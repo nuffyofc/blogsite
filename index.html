@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepMind Inspired AI Blog</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* 1. BARVNA PALETA IN SPREMENLJIVKE */
+        :root {
+            --bg-color: #050505;          /* Rich Black */
+            --card-bg: #0f0f11;           /* Subtilen kontrast za kartice */
+            --text-main: #f5f5f7;         /* Čisto bela z malce manj bleščanja */
+            --text-muted: #86868b;        /* Siva za sekundarne informacije */
+            --border-color: #222225;      /* Subtilne linije za grid */
+
+            /* Barvno kodiranje kategorij (Gemstones) */
+            --tag-research: #2f80ed;      /* Sapphire Blue */
+            --tag-safety: #00b074;        /* Emerald Green */
+            --tag-ethics: #9b51e0;        /* Amethyst Orchid */
+        }
+
+        /* 2. SPLOŠNI STILI & PROSTOR (Whitespace) */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            padding: 0 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Navigacija (Minimalistična) */
+        header {
+            padding: 2.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: -0.5px;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
+
+        nav a:hover {
+            color: var(--text-main);
+        }
+
+        /* Značke (Pill tags) */
+        .tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+        }
+
+        .tag.research { background: rgba(47, 128, 237, 0.15); color: var(--tag-research); }
+        .tag.safety { background: rgba(0, 176, 116, 0.15); color: var(--tag-safety); }
+        .tag.ethics { background: rgba(155, 81, 224, 0.15); color: var(--tag-ethics); }
+
+        /* 3. HERO SEKCIJA (Asimetrična postavitev) */
+        .hero {
+            padding: 5rem 0;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        /* 3D Vizualizacijski placeholder (DeepMind estetika) */
+        .hero-visual {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #311042 100%);
+            height: 400px;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Subtilen svetlobni efekt, ki simulira 3D fluidnost */
+        .hero-visual::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            left: -20%;
+            width: 140%;
+            height: 140%;
+            background: radial-gradient(circle, rgba(155,81,224,0.2) 0%, rgba(47,128,237,0.1) 50%, transparent 100%);
+            animation: pulse 8s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.1) translate(5%, 5%); }
+        }
+
+        .hero-content h1 {
+            font-size: 2.5rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .hero-content p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .meta {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* 4. GRID LAYOUT (Čista mrežna struktura za ostale članke) */
+        .articles-grid {
+            padding: 5rem 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        /* Hover efekt brez cenenih senc - zgolj čista linija */
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: #333338;
+        }
+
+        .card h3 {
+            font-size: 1.35rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+            letter-spacing: -0.5px;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+
+        /* Prilagodljivost za mobitele */
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 3rem 0;
+            }
+            .hero-visual {
+                order: -1;
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="logo">Kvantni.Uvid</div>
+            <nav>
+                <a href="#">Raziskave</a>
+                <a href="#">Varnost</a>
+                <a href="#">O nas</a>
+            </nav>
+        </header>
+
+        <main class="hero">
+            <div class="hero-visual">
+                </div>
+            <div class="hero-content">
+                <span class="tag research">Research</span>
+                <h1>Naslednja generacija nevronskih mrež: Razumevanje fluidne inteligence</h1>
+                <p>Predstavljamo naš najnovejši arhitekturni model, ki presega statično učenje in omogoča dinamično prilagajanje kontekstu v realnem času.</p>
+                <div class="meta">18. junij 2026 • 8 min branja</div>
+            </div>
+        </main>
+
+        <section class="articles-grid">
+
+            <article class="card">
+                <div>
+                    <span class="tag safety">Safety</span>
+                    <h3>Usklajevanje sistemov z močno splošno inteligenco (AGI)</h3>
+                    <p>Kako vzpostaviti matematične varovalke v sistemih, ki se učijo hitreje, kot jih lahko nadzorujemo.</p>
+                </div>
+                <div class="meta">15. junij 2026</div>
+            </article>
+
+            <article class="card">
+                <div>
+                    <span class="tag ethics">Ethics</span>
+                    <h3>Socio-ekonomski vpliv avtonomnih znanstvenih odkritij</h3>
+                    <p>Analiza odgovornosti pri uporabi umetne inteligence za avtomatizacijo laboratorijskih raziskav na področju biologije.</p>
+                </div>
+                <div class="meta">10. junij 2026</div>
+            </article>
+
+            <article class="card">
+                <div>
+                    <span class="tag research">Research</span>
+                    <h3>Geometrijsko globoko učenje v naprednih materialih</h3>
+                    <p>Uporaba simetrij in grafov za napovedovanje stabilnosti novih kristalnih struktur.</p>
+                </div>
+                <div class="meta">02. junij 2026</div>
+            </article>
+
+        </section>
+    </div>
+
+</body>
+</html>
