@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="sl"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Code & Hermes Agent: kako AI agenti spreminjajo razvoj programske opreme v Sloveniji</title>
+<style>
+  :root {
+    --emerald: #10b981; --emerald-bg: #ecfdf5; --emerald-dark: #065f46;
+    --amber: #f59e0b; --amber-bg: #fffbeb; --amber-dark: #92400e;
+    --indigo: #6366f1; --indigo-bg: #eef2ff; --indigo-dark: #312e81;
+    --slate: #64748b; --slate-light: #f8fafc; --slate-dark: #0f172a;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; color: var(--slate-dark); line-height: 1.65; background: #fff; }
+  .container { max-width: 780px; margin: 0 auto; padding: 0 1.25rem; }
+
+  /* Hero */
+  .hero { background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #312e81 100%); color: #fff; padding: 4rem 1.25rem 3rem; text-align: center; position: relative; overflow: hidden; }
+  .hero::after { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); opacity: .6; pointer-events: none; }
+  .hero h1 { font-size: clamp(1.6rem, 5vw, 2.4rem); font-weight: 800; margin: 0 0 .75rem; line-height: 1.15; position: relative; z-index: 1; }
+  .hero p { font-size: 1.05rem; color: #cbd5e1; max-width: 640px; margin: 0 auto 1.5rem; position: relative; z-index: 1; }
+  .hero .meta { font-size: .82rem; color: #94a3b8; position: relative; z-index: 1; }
+  .badge { display: inline-block; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; padding: .35rem .85rem; border-radius: 999px; margin-bottom: 1rem; }
+  .badge-green { background: var(--emerald); color: #fff; }
+  .badge-amber { background: var(--amber); color: #fff; }
+  .badge-indigo { background: var(--indigo); color: #fff; }
+
+  /* Typography */
+  h2 { font-size: 1.45rem; font-weight: 800; margin: 2.5rem 0 1rem; color: var(--slate-dark); display: flex; align-items: center; gap: .6rem; }
+  h3 { font-size: 1.15rem; font-weight: 700; margin: 1.75rem 0 .6rem; color: var(--slate-dark); }
+  h4 { font-size: 1rem; font-weight: 700; margin: 1.25rem 0 .4rem; color: #334155; }
+  p, ul, ol { margin: 0 0 1rem; }
+  ul { padding-left: 1.25rem; }
+  li { margin-bottom: .4rem; }
+  a { color: #2563eb; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* Cards */
+  .card { background: #fff; border-radius: 14px; box-shadow: 0 1px 3px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.04); border-left: 5px solid var(--emerald); padding: 1.35rem; margin: 1.25rem 0; position: relative; }
+  .card-amber { border-left-color: var(--amber); }
+  .card-indigo { border-left-color: var(--indigo); }
+  .card-header { display: flex; align-items: baseline; gap: .6rem; flex-wrap: wrap; margin-bottom: .5rem; }
+  .card-num { font-weight: 800; color: var(--emerald-dark); font-size: 1.05rem; }
+  .card-amber .card-num { color: var(--amber-dark); }
+  .card-indigo .card-num { color: var(--indigo-dark); }
+  .card-title { font-weight: 700; font-size: 1.08rem; color: var(--slate-dark); }
+  .card-tags { display: flex; gap: .5rem; flex-wrap: wrap; margin: .35rem 0 .6rem; }
+  .tag { font-size: .72rem; font-weight: 600; padding: .2rem .55rem; border-radius: 6px; background: var(--slate-light); color: var(--slate); border: 1px solid #e2e8f0; }
+  .tag-blue { background: var(--indigo-bg); color: var(--indigo-dark); border-color: #c7d2fe; }
+  .tag-ghost { background: transparent; border-style: dashed; }
+
+  /* Problem / Solution boxes */
+  .problem-box { background: #fff7ed; border: 1px solid #fed7aa; border-radius: 10px; padding: .85rem 1rem; margin: .6rem 0; font-size: .92rem; color: #7c2d12; }
+  .problem-box strong { color: #9a3412; }
+  .solution-box { background: #f0fdf4; border: 1px solid #a7f3d0; border-radius: 10px; padding: .85rem 1rem; margin: .6rem 0; font-size: .92rem; color: #065f46; }
+  .solution-box strong { color: #047857; }
+  .money-box { background: var(--indigo-bg); border: 1px solid #c7d2fe; border-radius: 10px; padding: .85rem 1rem; margin: .6rem 0; font-size: .92rem; color: var(--indigo-dark); }
+
+  /* Tech stack highlight */
+  .stack { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 1rem; margin: .75rem 0; }
+  .stack-title { font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: #64748b; margin-bottom: .5rem; }
+  .stack code { background: #e2e8f0; padding: .15rem .4rem; border-radius: 5px; font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace; font-size: .85rem; color: #334155; }
+
+  /* Quote / stat boxes */
+  .stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin: 1.25rem 0; }
+  .stat { background: var(--slate-light); border-radius: 12px; padding: 1rem; text-align: center; border: 1px solid #e2e8f0; }
+  .stat-num { display: block; font-size: 1.6rem; font-weight: 800; color: var(--emerald-dark); }
+  .stat-label { font-size: .78rem; color: #64748b; margin-top: .25rem; }
+  .quote { border-left: 4px solid var(--indigo); padding-left: 1rem; margin: 1.25rem 0; color: #475569; font-style: italic; }
+
+  /* TOC */
+  .toc { background: var(--slate-light); border-radius: 12px; padding: 1.25rem; margin: 2rem 0; border: 1px solid #e2e8f0; }
+  .toc h4 { margin: 0 0 .75rem; font-size: .9rem; text-transform: uppercase; letter-spacing: .04em; color: #64748b; }
+  .toc ul { list-style: none; padding: 0; margin: 0; }
+  .toc li { margin: .35rem 0; font-size: .92rem; }
+  .toc a { color: #334155; }
+  .toc a:hover { color: #2563eb; }
+
+  /* Section dividers */
+  .section-lead { font-size: 1.05rem; color: #475569; margin-bottom: 1.25rem; }
+  .tier-badge { display: inline-flex; align-items: center; gap: .5rem; margin-bottom: .75rem; }
+
+  /* Roadmap table */
+  table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: .92rem; }
+  th, td { text-align: left; padding: .65rem .75rem; border-bottom: 1px solid #e2e8f0; }
+  th { font-weight: 700; color: #334155; background: #f8fafc; }
+  tr:hover { background: #f8fafc; }
+
+  /* Footer CTA */
+  .cta { background: linear-gradient(135deg, #065f46 0%, #047857 100%); color: #fff; border-radius: 14px; padding: 2rem 1.5rem; text-align: center; margin: 2.5rem 0; }
+  .cta h3 { color: #fff; margin: 0 0 .5rem; font-size: 1.25rem; }
+  .cta p { color: #d1fae5; margin: 0; font-size: .95rem; }
+
+  /* Responsive */
+  @media (max-width: 600px) { .hero { padding: 2.5rem 1rem 2rem; } .stat-row { grid-template-columns: 1fr 1fr; } }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <span class="badge badge-indigo">AI Agenti 2026</span>
+    <h1>Claude Code &amp; Hermes Agent:<br>kako avtonomni AI razvijalci<br>spreminjajo slovenske ekipe</h1>
+    <p>Primerjava dveh pristopov k agentnemu kodiranju — Anthropicovega Claude Code in odprtokodnega Hermes agenta — ter konkreten vodnik, kako ju slovenski builderji in agencije že danes vpeljujejo v delo.</p>
+    <div class="meta">18. junij 2026 • Čas branja: 14 min • Avtor: AI Research Team</div>
+  </div>
+</header>
+
+<main class="container">
+
+<!-- TOC -->
+<nav class="toc">
+  <h4>Kazalo vsebine</h4>
+  <ul>
+    <li><a href="#kaj-je-claude-code">1. Kaj je Claude Code?</a></li>
+    <li><a href="#kaj-je-hermes">2. Kaj je Hermes Agent?</a></li>
+    <li><a href="#primerjava">3. Primerjava: Claude Code vs. Hermes Agent</a></li>
+    <li><a href="#uporabe">4. Praktične uporabe za slovenske builderje</a></li>
+    <li><a href="#stack">5. Tech stack za agentno kodiranje</a></li>
+    <li><a href="#roadmap">6. Roadmap: kako agente vpeljati v ekipo</a></li>
+    <li><a href="#zakljucek">7. Zaključek: prihodnost je agentna</a></li>
+  </ul>
+</nav>
+
+<!-- KAJ JE CLAUDE CODE -->
+<section id="kaj-je-claude-code">
+  <h2>🤖 Kaj je Claude Code?</h2>
+  <p class="section-lead">Claude Code ni dopolnjevanje kode v urejevalniku — je agent, ki sam odpre terminal, prebere repozitorij in dokonča nalogo.</p>
+
+  <p>Claude Code je Anthropicovo agentno orodje za ukazno vrstico (CLI), ki teče neposredno v terminalu razvijalca. Namesto da bi predlagal le naslednjo vrstico kode, Claude Code <strong>samostojno brska po datotekah projekta, zaganja teste, popravlja napake, ustvarja gita commite in odpira pull requeste</strong>. Razvijalec mu poda nalogo v naravnem jeziku — "popravi bug v plačilnem modulu" ali "dodaj testno pokritost za auth flow" — agent pa sam poišče relevantne datoteke, naredi spremembe in preveri, ali rešitev deluje.</p>
+
+  <div class="stat-row">
+    <div class="stat"><span class="stat-num">CLI</span><span class="stat-label">Teče v terminalu,<br>brez ločenega IDE-ja</span></div>
+    <div class="stat"><span class="stat-num">Agentno</span><span class="stat-label">Sam izvaja ukaze,<br>teste in commite</span></div>
+    <div class="stat"><span class="stat-num">Claude</span><span class="stat-label">Model Anthropic<br>(Sonnet / Opus)</span></div>
+    <div class="stat"><span class="stat-num">MCP</span><span class="stat-label">Povezljivost z zunanjimi<br>orodji in podatki</span></div>
+  </div>
+
+  <p>Ključna razlika v primerjavi s klasičnimi "copilot" orodji je <strong>avtonomija</strong>. Claude Code lahko verigo nalog izvede brez vmesnega potrjevanja vsake vrstice: prebere issue, naredi plan, implementira spremembo čez več datotek, požene test suite in poroča, kaj je naredil. Razvijalec ostane v vlogi nadzornika — pregleda diff, odobri ali popravi smer — ne pa tipkača vsake vrstice.</p>
+
+  <div class="quote">
+    "Razlika med 'AI dopolnjevanjem kode' in 'agentnim kodiranjem' je razlika med predlogom naslednje besede in dejanskim opravljenim delom."
+  </div>
+
+  <p>Za slovenske ekipe je to pomembno iz dveh razlogov:</p>
+  <ul>
+    <li><strong>Manjše ekipe lahko dosežejo več.</strong> Solo founder ali 2-3 člana lahko vzdržujejo obseg kode, za katerega bi prej potrebovali 5-6 razvijalcev.</li>
+    <li><strong>Onboarding na velike, slabo dokumentirane repozitorije je hitrejši.</strong> Agent prebere celotno kodno bazo in razloži arhitekturo novemu sodelavcu ali strankinemu razvijalcu v minutah, ne dnevih.</li>
+  </ul>
+</section>
+
+<!-- KAJ JE HERMES -->
+<section id="kaj-je-hermes">
+  <h2>🪽 Kaj je Hermes Agent?</h2>
+  <p class="section-lead">Če je Claude Code zaprt, oprt na enega ponudnika in pripravljen "iz škatle", je Hermes Agent nasprotni pol: odprt, modularen in zgrajen za tiste, ki želijo nadzor nad vsako plastjo.</p>
+
+  <p>Hermes Agent izhaja iz družine odprtokodnih modelov Hermes (Nous Research), ki so prilagojeni (fine-tuned) za <strong>function calling, strukturiran izhod in agentne delovne tokove</strong>. Namesto enega zaprtega sistema gre za gradnik: razvijalec model namesti lokalno ali v lastnem oblaku, ga poveže s svojim orkestratorjem (npr. LangChain, AutoGen, lasten agentni loop) in zgradi agenta po meri — od code-review bota do avtonomnega DevOps agenta, ki spremlja produkcijo.</p>
+
+  <div class="stat-row">
+    <div class="stat"><span class="stat-num">Odprt</span><span class="stat-label">Odprte uteži,<br>self-hosting možen</span></div>
+    <div class="stat"><span class="stat-num">Modularen</span><span class="stat-label">Sestavljiv z lastnim<br>orkestratorjem</span></div>
+    <div class="stat"><span class="stat-num">Function calling</span><span class="stat-label">Natančno klicanje<br>orodij in API-jev</span></div>
+    <div class="stat"><span class="stat-num">On-premise</span><span class="stat-label">Podatki ostanejo<br>znotraj podjetja</span></div>
+  </div>
+
+  <p>Za podjetja z občutljivimi podatki (zdravstvo, finance, javna uprava) je to ključna prednost: model lahko teče <strong>on-premise ali na SLAIF/EuroHPC infrastrukturi</strong>, brez da bi koda ali podatki kadarkoli zapustili Slovenijo. Cena je drugačna kompleksnost — Hermes ne pride z vgrajenim terminalskim vmesnikom kot Claude Code; razvijalec mora sam zgraditi agentni loop, orodja in varovalke (guardrails).</p>
+
+  <div class="problem-box">
+    <strong>Pogosta zmota:</strong> "Odprtokodno pomeni brezplačno in enostavno." V praksi samostojno gostovanje (self-hosting) Hermesa zahteva GPU infrastrukturo, MLOps znanje in vzdrževanje — strošek se preseli iz naročnine v inženirski čas.
+  </div>
+</section>
+
+<!-- PRIMERJAVA -->
+<section id="primerjava">
+  <h2>⚖️ Primerjava: Claude Code vs. Hermes Agent</h2>
+  <p class="section-lead">Vprašanje ni "kateri je boljši", ampak "za kateri problem je kateri pravi".</p>
+
+  <table>
+    <tbody><tr><th>Kriterij</th><th>Claude Code</th><th>Hermes Agent</th></tr>
+    <tr><td>Postavitev</td><td>Namesti in deluje v minutah</td><td>Zahteva infrastrukturo in orkestracijo</td></tr>
+    <tr><td>Nadzor nad podatki</td><td>Podatki gredo k Anthropicu (API)</td><td>Lahko ostane 100 % on-premise</td></tr>
+    <tr><td>Stroškovni model</td><td>Naročnina / poraba po tokenih</td><td>GPU strošek + inženirski čas</td></tr>
+    <tr><td>Kvaliteta sklepanja</td><td>Zelo visoka, vodilni zaprt model</td><td>Dobra, a odvisna od izbrane velikosti modela</td></tr>
+    <tr><td>Prilagodljivost</td><td>Omejena na to, kar ponuja CLI/MCP</td><td>Popolna — zgradiš karkoli</td></tr>
+    <tr><td>Najboljše za</td><td>Hitro dostavo, majhne in srednje ekipe</td><td>Regulirane panoge, lastne agentne produkte</td></tr>
+  </table>
+
+  <div class="money-box">
+    💰 <strong>Praktično pravilo:</strong> Če stranka plačuje za hitrost dostave, uporabi Claude Code. Če stranka plačuje za to, da podatki nikoli ne zapustijo njene infrastrukture, zgradi rešitev na Hermesu (ali drugem odprtem modelu na SLAIF).
+  </div>
+</section>
+
+<!-- PRAKTICNE UPORABE -->
+<section id="uporabe">
+  <h2>🛠️ Praktične uporabe za slovenske builderje</h2>
+  <p class="section-lead">Pet konkretnih scenarijev, kako agentno kodiranje že danes prinaša denar slovenskim agencijam in solo developerjem.</p>
+
+  <div class="card">
+    <div class="card-header"><span class="card-num">#1</span><span class="card-title">Agencija dostavi 3× več projektov z enako ekipo</span></div>
+    <div class="card-tags">
+      <span class="tag">Agencija</span><span class="tag">B2B</span><span class="tag tag-blue">🏔️ Claude Code</span><span class="tag">€€€€</span>
+    </div>
+    <div class="problem-box">
+      <strong>Realen problem:</strong> Spletna agencija v Ljubljani s 4 razvijalci sprejme naročilo za WordPress-to-Next.js migracijo. Ocenjen čas: 6 tednov. Stranka plača po fiksni ceni — vsak dodaten teden pomeni izgubo marže.
+    </div>
+    <div class="money-box">
+      💰 <strong>Koliko denarja rešiš:</strong> Če Claude Code skrajša implementacijski čas za 40 %, agencija isto ekipo uporabi za <strong>1,5–2 dodatna projekta na četrtletje</strong> — brez novih zaposlitev. Pri povprečni vrednosti projekta 15.000 € je to 20.000–30.000 € dodatnega prihodka na ekipo letno.
+    </div>
+    <div class="solution-box">
+      <strong>Kako agent reši:</strong> Claude Code prebere staro WordPress kodno bazo, generira komponentno strukturo v Next.js, samodejno migrira vsebinske tipe in zažene regresijske teste. Razvijalec preveri diff in popravi robne primere namesto pisanja vsega od začetka.
+    </div>
+    <div class="stack">
+      <div class="stack-title">🛠️ Tehnologije</div>
+      <p>
+        <strong>Agent:</strong> <code>Claude Code CLI</code> povezan z repozitorijem prek <code>git worktree</code> za varno paralelno delo.<br>
+        <strong>MCP strežniki:</strong> povezava na <code>Figma</code> (za design tokens) in <code>Linear/Jira</code> (za task tracking).<br>
+        <strong>CI:</strong> <code>GitHub Actions</code> — agent požene teste pred vsakim commitom.
+      </p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="card-num">#2</span><span class="card-title">Solo founder vzdržuje produkt brez najema razvijalca</span></div>
+    <div class="card-tags">
+      <span class="tag">Micro-SaaS</span><span class="tag">Solo</span><span class="tag tag-blue">🏔️ Claude Code</span><span class="tag">€€€</span>
+    </div>
+    <div class="problem-box">
+      <strong>Realen problem:</strong> Solo founder iz Maribora vodi micro-SaaS s 200 plačujočimi strankami. Vsak teden pride 5-10 bug reportov in feature requestov. Sam ne zmore vsega kodirati in obenem prodajati.
+    </div>
+    <div class="money-box">
+      💰 <strong>Koliko denarja rešiš:</strong> Najem junior razvijalca stane 2.500–3.500 €/mesec bruto. Claude Code naročnina stane 20–200 €/mesec, odvisno od porabe — <strong>10–15× ceneje</strong> za enak obseg vzdrževalnega dela.
+    </div>
+    <div class="solution-box">
+      <strong>Kako agent reši:</strong> Founder vsak bug report prilepi agentu kot nalogo. Agent poišče vzrok, napiše popravek, požene teste in pripravi pull request. Founder samo pregleda in potrdi merge — ostane mu čas za prodajo in podporo strankam.
+    </div>
+  </div>
+
+  <div class="card card-amber">
+    <div class="card-header"><span class="card-num">#3</span><span class="card-title">Banka ali zavarovalnica zgradi interni code-review agent na Hermesu</span></div>
+    <div class="card-tags">
+      <span class="tag">Enterprise</span><span class="tag">Regulirano</span><span class="tag tag-blue">🏔️ Hermes / on-premise</span><span class="tag">€€€€€</span>
+    </div>
+    <div class="problem-box">
+      <strong>Realen problem:</strong> Finančna institucija ne sme pošiljati izvorne kode v zunanji API zaradi regulative (GDPR, interna politika o občutljivih podatkih). Hkrati želi izkoristiti agentno kodiranje za hitrejši code review.
+    </div>
+    <div class="money-box">
+      💰 <strong>Koliko denarja rešiš:</strong> Code review v reguliranih panogah traja 2-4 ure na pull request zaradi varnostnih in skladnostnih pravil. Avtomatiziran prvi pregled skrajša to na <strong>30 minut</strong> — pri 50 PR-jih na mesec je to 100+ ur prihranjenega seniorskega časa.
+    </div>
+    <div class="solution-box">
+      <strong>Kako agent reši:</strong> Hermes model, fine-tuniran na interna varnostna pravila podjetja, teče on-premise. Agent pregleda vsak pull request, preveri skladnost s coding standardi in OWASP pravili ter oceni tveganje, preden gre pred človeškega reviewerja.
+    </div>
+    <div class="stack">
+      <div class="stack-title">🛠️ Tehnologije (Enterprise Stack)</div>
+      <p>
+        <strong>Model:</strong> <code>Hermes</code> (fine-tune na <code>Llama 3</code> ali <code>Mistral</code> osnovi) z <strong>function calling</strong> za klic internih API-jev.<br>
+        <strong>Orkestracija:</strong> <code>LangChain</code> ali lasten agentni loop v <code>Python</code>.<br>
+        <strong>Deploy:</strong> <code>vLLM</code> na <code>SLAIF / EuroHPC</code> ali lasten on-premise GPU cluster.<br>
+        <strong>Integracija:</strong> Webhook iz <code>GitLab/GitHub Enterprise</code> ob vsakem pull requestu.
+      </p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="card-num">#4</span><span class="card-title">Freelancer avtomatizira dokumentacijo in onboarding novih strank</span></div>
+    <div class="card-tags">
+      <span class="tag">Freelance</span><span class="tag">B2B</span><span class="tag tag-blue">🏔️ Claude Code</span><span class="tag">€€</span>
+    </div>
+    <div class="problem-box">
+      <strong>Realen problem:</strong> Freelance razvijalec prevzame stranko z 3 leta staro, slabo dokumentirano kodno bazo. Razumevanje arhitekture pred prvim popravkom vzame 1-2 tedna neplačanega "raziskovanja".
+    </div>
+    <div class="money-box">
+      💰 <strong>Koliko denarja rešiš:</strong> Skrajšanje onboardinga z 10 dni na 2 dni pomeni <strong>8 dodatnih plačljivih dni</strong> na novo stranko — pri 400 €/dan je to 3.200 € prihranjenega/zasluženega časa na projekt.
+    </div>
+    <div class="solution-box">
+      <strong>Kako agent reši:</strong> Claude Code v nekaj minutah prebere celotno kodno bazo, generira arhitekturni povzetek, seznam tehničnega dolga in predlog prvih varnih popravkov. Freelancer ima dokument, ki bi ga sicer pisal teden dni.
+    </div>
+  </div>
+
+  <div class="card card-amber">
+    <div class="card-header"><span class="card-num">#5</span><span class="card-title">Startup zgradi lastnega "support-to-code" agenta za hitro odzivnost</span></div>
+    <div class="card-tags">
+      <span class="tag">Vertical SaaS</span><span class="tag">B2B</span><span class="tag tag-blue">🏔️ Claude Code + Hermes hibrid</span><span class="tag">€€€€</span>
+    </div>
+    <div class="problem-box">
+      <strong>Realen problem:</strong> Startup v rasti dobiva 20+ podpornih zahtevkov dnevno, od katerih je tretjina dejanski bug, ne vprašanje uporabnika. Podporna ekipa bug le posreduje razvijalcem, kar podvoji čas reševanja.
+    </div>
+    <div class="money-box">
+      💰 <strong>Koliko denarja rešiš:</strong> Hitrejše reševanje bugov zniža churn. Pri SaaS s 50.000 €/mesec MRR že <strong>1 odstotna točka manjšega churna</strong> pomeni 500+ €/mesec ohranjenega prihodka.
+    </div>
+    <div class="solution-box">
+      <strong>Kako agent reši:</strong> Lasten triage agent (na Hermesu, zaradi nadzora nad podatki podpornih ticketov) klasificira zahtevek kot bug/vprašanje/feature. Pravi bugi gredo avtomatsko v Claude Code, ki pripravi popravek in odpre pull request, še preden razvijalec sploh prebere ticket.
+    </div>
+  </div>
+</section>
+
+<!-- STACK -->
+<section id="stack">
+  <h2>🛠️ Tech stack za agentno kodiranje</h2>
+  <p class="section-lead">Kombinacija zaprtega in odprtega pristopa, prilagojena velikosti ekipe in občutljivosti podatkov.</p>
+
+  <h3>Solo / Mala agencija — hitra dostava</h3>
+  <table>
+    <tbody><tr><th>Plast</th><th>Orodje</th><th>Zakaj</th></tr>
+    <tr><td>Agent</td><td><code>Claude Code CLI</code></td><td>Deluje takoj, brez infrastrukture, najvišja kvaliteta sklepanja.</td></tr>
+    <tr><td>Verzioniranje</td><td><code>Git</code> + <code>GitHub</code></td><td>Agent dela v ločenih branchih/worktree, varno za produkcijo.</td></tr>
+    <tr><td>CI/CD</td><td><code>GitHub Actions</code></td><td>Avtomatski testi pred merge — varovalka za agentne spremembe.</td></tr>
+    <tr><td>Orodja (MCP)</td><td><code>Linear</code>, <code>Figma</code>, <code>Sentry</code> MCP strežniki</td><td>Agent dobi kontekst nalog, designa in napak brez kopiranja.</td></tr>
+  </tbody></table>
+
+  <h3>Enterprise / regulirano — nadzor nad podatki</h3>
+  <table>
+    <tbody><tr><th>Plast</th><th>Orodje</th><th>Zakaj</th></tr>
+    <tr><td>Model</td><td><code>Hermes</code> na <code>Llama 3 / Mistral</code></td><td>Odprte uteži, fine-tune na interne podatke in standarde.</td></tr>
+    <tr><td>Orkestracija</td><td><code>LangChain</code> ali <code>AutoGen</code></td><td>Definiraš lasten agentni loop in varovalke.</td></tr>
+    <tr><td>Deploy</td><td><code>vLLM</code> na <code>SLAIF / EuroHPC</code></td><td>Visoka propustnost, podatki ostanejo v SLO infrastrukturi.</td></tr>
+    <tr><td>Varnost</td><td><code>HashiCorp Vault</code> + audit logi</td><td>Sledljivost vsake agentne akcije — obvezno za revizijo.</td></tr>
+  </tbody></table>
+
+  <h3>Splošni nasveti</h3>
+  <ul>
+    <li><strong>Začni s Claude Code za interno produktivnost.</strong> Tudi regulirana podjetja lahko agenta uporabljajo na nekritičnem, javno dostopnem delu kode, dokler ne zgradijo on-premise alternative.</li>
+    <li><strong>Vedno pusti človeka v zanki.</strong> Agent predlaga, človek potrjuje merge v produkcijo — to ni opcija, ampak varnostna zahteva.</li>
+    <li><strong>Meri prihranjen čas, ne "kul faktor".</strong> Stranki ne prodajaš AI-ja, prodajaš hitrejšo dostavo in nižji strošek vzdrževanja.</li>
+    <li><strong>Hibridni pristop pogosto zmaga.</strong> Claude Code za splošni razvoj, Hermes/odprt model za del, ki obravnava občutljive podatke.</li>
+  </ul>
+</section>
+
+<!-- ROADMAP -->
+<section id="roadmap">
+  <h2>🗺️ Roadmap: kako agente vpeljati v ekipo</h2>
+
+  <h3>Faza 1: Pilot (0–14 dni)</h3>
+  <ul>
+    <li><strong>Izberi en nekritičen repozitorij.</strong> Internal tool, marketing stran ali manjši micro-servis — ne plačilni sistem.</li>
+    <li><strong>Namesti Claude Code in zaženi 3-5 realnih nalog.</strong> Bug popravki, dodajanje testov, refaktoring.</li>
+    <li><strong>Meri čas pred/po.</strong> To je tvoj dokaz vrednosti za vodstvo ali stranko.</li>
+  </ul>
+
+  <h3>Faza 2: Vpeljava v ekipo (14–60 dni)</h3>
+  <ul>
+    <li><strong>Definiraj pravila igre.</strong> Kdaj agent lahko sam naredi commit, kdaj potrebuje review. Zapiši v CONTRIBUTING.md.</li>
+    <li><strong>Poveži MCP strežnike.</strong> Linear/Jira, Figma, monitoring — agent naj ima enak kontekst kot razvijalec.</li>
+    <li><strong>Usposobi ekipo za "agent management".</strong> Veščina ni več samo pisanje kode, ampak postavljanje natančnih nalog in pregledovanje diffov.</li>
+  </ul>
+
+  <h3>Faza 3: Skaliranje in regulirani primeri (60–180 dni)</h3>
+  <ul>
+    <li><strong>Za občutljive podatke postavi Hermes/odprt model on-premise.</strong> Začni z eno nekritično agentno funkcijo (npr. code review).</li>
+    <li><strong>Zgradi interno knjižnico promptov in agentnih nalog.</strong> To postane konkurenčna prednost agencije ali ekipe.</li>
+    <li><strong>Cilj: 30-50 % hitrejša dostava</strong> na ponavljajočih se nalogah (migracije, bug fixi, testna pokritost), merjeno na realnih projektih.</li>
+  </ul>
+</section>
+
+<!-- ZAKLJUCEK -->
+<section id="zakljucek">
+  <h2>🎯 Zaključek: prihodnost je agentna</h2>
+
+  <p>Claude Code in Hermes Agent nista konkurenta v smislu "izberi enega" — predstavljata dva konca istega spektra: <strong>hitrost in kvaliteta iz škatle</strong> proti <strong>popolnemu nadzoru in prilagodljivosti</strong>. Slovenske ekipe, ki bodo zmagale v naslednjih dveh letih, ne bodo tiste, ki agentno kodiranje ignorirajo, ampak tiste, ki znajo izbrati pravo orodje za pravo nalogo — Claude Code za hitro dostavo, odprte modele tipa Hermes za primere, kjer podatki ne smejo zapustiti podjetja.</p>
+
+  <p>Za slovenski trg je to še posebej relevantno:</p>
+  <ul>
+    <li><strong>Primanjkljaj 13.000 ICT specialistov</strong> pomeni, da agentno kodiranje ni luksuz, ampak nujnost za ohranjanje konkurenčnosti.</li>
+    <li><strong>SLAIF in EuroHPC infrastruktura</strong> omogočata, da tudi manjša slovenska podjetja gostijo odprte modele brez tujih oblačnih stroškov.</li>
+    <li><strong>Regulirane panoge (banke, zdravstvo, javna uprava)</strong> dobijo pot do AI produktivnosti, ne da bi kršile zahteve o lokaciji podatkov.</li>
+  </ul>
+
+  <p>Ne čakaj, da se odločiš med "popolnim" in "začetnim" pristopom. Namesti Claude Code danes na en nekritičen repozitorij, meri rezultate v dveh tednih in šele nato načrtuj, kje potrebuješ odprt, on-premise pristop.</p>
+
+  <div class="cta">
+    <h3>Začni z enim agentom danes.</h3>
+    <p>Najboljši čas za vpeljavo agentnega kodiranja je bil pred letom dni. Drugi najboljši čas je danes — odpri terminal in dodeli prvo nalogo.</p>
+  </div>
+
+  <p style="font-size:.85rem; color:#64748b; margin-top:2rem;">
+    <strong>Opomba:</strong> Claude Code je orodje podjetja Anthropic. Hermes je odprtokodna družina modelov, ki jo vzdržuje Nous Research. Imena in znamke so v tem zapisu uporabljena izključno v informativni in primerjalni vlogi.
+  </p>
+</section>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="sl"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slovenija je AI Blue Ocean: 30 priložnosti, konkretni stack in koliko denarja rešiš podjetnikom</title>
+<style>
+  :root {
+    --emerald: #10b981; --emerald-bg: #ecfdf5; --emerald-dark: #065f46;
+    --amber: #f59e0b; --amber-bg: #fffbeb; --amber-dark: #92400e;
+    --indigo: #6366f1; --indigo-bg: #eef2ff; --indigo-dark: #312e81;
+    --slate: #64748b; --slate-light: #f8fafc; --slate-dark: #0f172a;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; color: var(--slate-dark); line-height: 1.65; background: #fff; }
+  .container { max-width: 780px; margin: 0 auto; padding: 0 1.25rem; }
+
+  /* Hero */
+  .hero { background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #312e81 100%); color: #fff; padding: 4rem 1.25rem 3rem; text-align: center; position: relative; overflow: hidden; }
+  .hero::after { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); opacity: .6; pointer-events: none; }
+  .hero h1 { font-size: clamp(1.6rem, 5vw, 2.4rem); font-weight: 800; margin: 0 0 .75rem; line-height: 1.15; position: relative; z-index: 1; }
+  .hero p { font-size: 1.05rem; color: #cbd5e1; max-width: 640px; margin: 0 auto 1.5rem; position: relative; z-index: 1; }
+  .hero .meta { font-size: .82rem; color: #94a3b8; position: relative; z-index: 1; }
+  .badge { display: inline-block; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; padding: .35rem .85rem; border-radius: 999px; margin-bottom: 1rem; }
+  .badge-green { background: var(--emerald); color: #fff; }
+  .badge-amber { background: var(--amber); color: #fff; }
+  .badge-indigo { background: var(--indigo); color: #fff; }
+
+  /* Typography */
+  h2 { font-size: 1.45rem; font-weight: 800; margin: 2.5rem 0 1rem; color: var(--slate-dark); display: flex; align-items: center; gap: .6rem; }
+  h3 { font-size: 1.15rem; font-weight: 700; margin: 1.75rem 0 .6rem; color: var(--slate-dark); }
+  h4 { font-size: 1rem; font-weight: 700; margin: 1.25rem 0 .4rem; color: #334155; }
+  p, ul, ol { margin: 0 0 1rem; }
+  ul { padding-left: 1.25rem; }
+  li { margin-bottom: .4rem; }
+  a { color: #2563eb; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* Cards */
+  .card { background: #fff; border-radius: 14px; box-shadow: 0 1px 3px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.04); border-left: 5px solid var(--emerald); padding: 1.35rem; margin: 1.25rem 0; position: relative; }
+  .card-amber { border-left-color: var(--amber); }
+  .card-indigo { border-left-color: var(--indigo); }
+  .card-header { display: flex; align-items: baseline; gap: .6rem; flex-wrap: wrap; margin-bottom: .5rem; }
+  .card-num { font-weight: 800; color: var(--emerald-dark); font-size: 1.05rem; }
+  .card-amber .card-num { color: var(--amber-dark); }
+  .card-indigo .card-num { color: var(--indigo-dark); }
+  .card-title { font-weight: 700; font-size: 1.08rem; color: var(--slate-dark); }
+  .card-tags { display: flex; gap: .5rem; flex-wrap: wrap; margin: .35rem 0 .6rem; }
+  .tag { font-size: .72rem; font-weight: 600; padding: .2rem .55rem; border-radius: 6px; background: var(--slate-light); color: var(--slate); border: 1px solid #e2e8f0; }
+  .tag-blue { background: var(--indigo-bg); color: var(--indigo-dark); border-color: #c7d2fe; }
+  .tag-ghost { background: transparent; border-style: dashed; }
+
+  /* Problem / Solution boxes */
+  .problem-box { background: #fff7ed; border: 1px solid #fed7aa; border-radius: 10px; padding: .85rem 1rem; margin: .6rem 0; font-size: .92rem; color: #7c2d12; }
+  .problem-box strong { color: #9a3412; }
+  .solution-box { background: #f0fdf4; border: 1px solid #a7f3d0; border-radius: 10px; padding: .85rem 1rem; margin: .6rem 0; font-size: .92rem; color: #065f46; }
+  .solution-box strong { color: #047857; }
+  .money-box { background: var(--indigo-bg); border: 1px solid #c7d2fe; border-radius: 10px; padding: .85rem 1rem; margin: .6rem 0; font-size: .92rem; color: var(--indigo-dark); }
+
+  /* Tech stack highlight */
+  .stack { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 1rem; margin: .75rem 0; }
+  .stack-title { font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: #64748b; margin-bottom: .5rem; }
+  .stack code { background: #e2e8f0; padding: .15rem .4rem; border-radius: 5px; font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace; font-size: .85rem; color: #334155; }
+
+  /* Quote / stat boxes */
+  .stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin: 1.25rem 0; }
+  .stat { background: var(--slate-light); border-radius: 12px; padding: 1rem; text-align: center; border: 1px solid #e2e8f0; }
+  .stat-num { display: block; font-size: 1.6rem; font-weight: 800; color: var(--emerald-dark); }
+  .stat-label { font-size: .78rem; color: #64748b; margin-top: .25rem; }
+  .quote { border-left: 4px solid var(--indigo); padding-left: 1rem; margin: 1.25rem 0; color: #475569; font-style: italic; }
+
+  /* TOC */
+  .toc { background: var(--slate-light); border-radius: 12px; padding: 1.25rem; margin: 2rem 0; border: 1px solid #e2e8f0; }
+  .toc h4 { margin: 0 0 .75rem; font-size: .9rem; text-transform: uppercase; letter-spacing: .04em; color: #64748b; }
+  .toc ul { list-style: none; padding: 0; margin: 0; }
+  .toc li { margin: .35rem 0; font-size: .92rem; }
+  .toc a { color: #334155; }
+  .toc a:hover { color: #2563eb; }
+
+  /* Section dividers */
+  .section-lead { font-size: 1.05rem; color: #475569; margin-bottom: 1.25rem; }
+  .tier-badge { display: inline-flex; align-items: center; gap: .5rem; margin-bottom: .75rem; }
+
+  /* Roadmap table */
+  table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: .92rem; }
+  th, td { text-align: left; padding: .65rem .75rem; border-bottom: 1px solid #e2e8f0; }
+  th { font-weight: 700; color: #334155; background: #f8fafc; }
+  tr:hover { background: #f8fafc; }
+
+  /* Footer CTA */
+  .cta { background: linear-gradient(135deg, #065f46 0%, #047857 100%); color: #fff; border-radius: 14px; padding: 2rem 1.5rem; text-align: center; margin: 2.5rem 0; }
+  .cta h3 { color: #fff; margin: 0 0 .5rem; font-size: 1.25rem; }
+  .cta p { color: #d1fae5; margin: 0; font-size: .95rem; }
+
+  /* Responsive */
+  @media (max-width: 600px) { .hero { padding: 2.5rem 1rem 2rem; } .stat-row { grid-template-columns: 1fr 1fr; } }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <span class="badge badge-green">Blue Ocean Report 2025/26</span>
+    <h1>Slovenija je AI Blue Ocean:<br>30 priložnosti, konkretni tech stack<br>in realni €, ki jih rešiš podjetnikom</h1>
+    <p>Podrobna analiza slovenskega trga za builderje, vibecoderje, solo founderje in start-upe. S tehnologijami, cenami in roadmapom — od prve stranke do CEE ekspanzije.</p>
+    <div class="meta">4. junij 2026 • Čas branja: 18 min • Avtor: AI Research Team</div>
+  </div>
+</header>
+
+<main class="container">
+
+<!-- TOC -->
+<nav class="toc">
+  <h4>Kazalo vsebine</h4>
+  <ul>
+    <li><a href="#zakaj-slo">1. Zakaj je Slovenija AI Blue Ocean?</a></li>
+    <li><a href="#tier1">2. Tier 1 — Solo founder / Vibecoder (0–30 dni)</a></li>
+    <li><a href="#tier2">3. Tier 2 — Srednja težavnost, soliden ROI (3–6 mesecev)</a></li>
+    <li><a href="#tier3">4. Tier 3–4 — Enterprise &amp; GovTech, največ denarja (6–18 mesecev)</a></li>
+    <li><a href="#stack">5. The Builder's Stack — katere tehnologije uporabiš</a></li>
+    <li><a href="#roadmap">6. 0-to-1 Roadmap: od ideje do prvih 10.000 € MRR</a></li>
+    <li><a href="#zakljucek">7. Zaključek: CEE ekspanzija in zakaj je zdaj pravi čas</a></li>
+  </ul>
+</nav>
+
+<!-- UVOD -->
+<section id="zakaj-slo">
+  <h2>🌊 Zakaj je Slovenija AI Blue Ocean?</h2>
+  <p class="section-lead">Večina svetovnih AI produktov je zgrajenih za Kalifornijo, ne za Kranj. To je tvoja prednost.</p>
+
+  <p>Slovenska podjetja pri programski opremi, podatkovnih zbirkah in spletnih aktivnostih zaostajajo — <strong>smo šele na 20. mestu v EU</strong>. Zaostanek je najhujši pri malih in srednjih podjetjih (MSP). Tretjina podjetij ima še vedno zelo nizko digitalno intenzivnost, pri čemer <strong>najbolj zaostajata gradbeništvo in predelovalne dejavnosti</strong>. To pomeni eno stvar: <strong>masiven neizrabljen trg za AI rešitve</strong>.</p>
+
+  <div class="stat-row">
+    <div class="stat"><span class="stat-num">9</span><span class="stat-label">Aktivnih AI podjetij<br><em>(nov. 2025)</em></span></div>
+    <div class="stat"><span class="stat-num">17,4M €</span><span class="stat-label">Nepovratnih sredstev<br>za digitalno transformacijo</span></div>
+    <div class="stat"><span class="stat-num">13.000</span><span class="stat-label">Primanjkljaj ICT<br>specialistov v SLO</span></div>
+    <div class="stat"><span class="stat-num">20.</span><span class="stat-label">Mesto v EU<br>po digitalizaciji</span></div>
+  </div>
+
+  <p>Slovenija ima le <strong>9 aktivnih AI podjetij</strong> (stanje november 2025). Skupno jih je deset, če štejemo tista, katerih osnova so AI produkti. To ni slabo — to je <strong>priložnost za graditelje</strong>. Medtem ko se Silicon Valley bije v ChatGPT klonih, imaš ti v Sloveniji trg, kjer lastnik frizerskega salona v Kopru nima niti avtomatskega odzivnika, gradbeno podjetje v Celju pa še vedno piše ponudbe v Wordu.</p>
+
+  <p>Država vliva denar v digitalizacijo. Načrtovana višina nepovratnih sredstev znaša <strong>17,4 milijona evrov</strong> — namen razpisa je podpreti podjetja pri uvajanju naprednih digitalnih tehnologij, kot so umetna inteligenca. To pomeni, da imaš <strong>finančno motivirane kupce</strong> in državno potrjeno smer.</p>
+
+  <div class="quote">
+    "Slovensko gospodarstvo je močno usmerjeno v predelovalno industrijo, ki pa ima največji zaostanek pri digitalizaciji. Podjetja še vedno temeljijo na tradicionalnih poslovnih modelih."
+  </div>
+
+  <p>Ključna dejstva, ki jih moraš razumeti, preden zgradiš:</p>
+  <ul>
+    <li><strong>Majhnost trga:</strong> 2 milijona prebivalcev pomeni, da B2C produkti hitro zadenjo strop. Ciljaj B2B — v Sloveniji se vsi poznajo, referenčna prodaja je bliskovita.</li>
+    <li><strong>CEE ekspanzija je nujna od dne 1:</strong> CEE–DACH koridor (Hrvaška, Srbija, Bosna, Avstrija, Italija, Madžarska) je geografsko in kulturno idealen. Slovenski start-upi imajo tu največjo verjetnost zgodnjega mednarodnega uspeha.</li>
+    <li><strong>EU AI Act je že v veljavi:</strong> Skladnost ni ovira — je produkt. Podjetja bodo plačevala za GDPR- in AI-compliant orodja.</li>
+    <li><strong>SLAIF in EuroHPC:</strong> Slovenska AI tovarna (SLAIF) je ena od šestih izbranih lokacij EuroHPC za AI tovarne. Dostop do infrastrukture, podatkov in strokovnega znanja bo "vse na enem mestu".</li>
+  </ul>
+</section>
+
+<!-- TIER 1 -->
+<section id="tier1">
+  <h2>🟢 Tier 1 — Solo Founder / Vibecoder (Quick Wins)</h2>
+  <p class="section-lead">MVP v 2–4 tednih. Nocode/low-code + AI API. Cena: 29–149 €/mesec. Cilj: 20 strank = 2.000–5.000 € MRR.</p>
+
+  <div class="card">
+    <div class="card-header"><span class="card-num">#1</span><span class="card-title">AI Chatbot v Slovenščini za lokalna podjetja</span></div>
+    <div class="card-tags">
+      <span class="tag">Micro-SaaS</span><span class="tag">B2B</span><span class="tag tag-blue">🏔️ SLO specifično</span><span class="tag">€€€</span>
+    </div>
+    <div class="problem-box">
+      <strong>Realen problem:</strong> Zobozdravstvena ordinacija v Ljubljani plača asistentko ~1.200 €/mesec za telefone, a ob 20. uri, ob sobotah in med dopusti nihče ne dvigne. 30 % potencialnih pacientov pokliče zunaj delovnega časa in obesi, ker dobi avtomatski telefonski odzivnik. Avtosalon v Mariboru izgubi vsaj 5-8 prodajnih priložnosti mesečno, ker na Facebook sporočila odgovori z zamudo 6 ur.
+    </div>
+    <div class="money-box">
+      💰 <strong>Koliko denarja rešiš:</strong> Zaposlitev front-desk delavca stane 15.000–20.000 €/leto. Tvoj bot stane 49–149 €/mesec. Za podjetje je to <strong>10× ceneje</strong>, za tebe pa recurring revenue.
+    </div>
+    <div class="solution-box">
+      <strong>Kako AI reši:</strong> Chatbot, ki v slovenščini odgovarja na cene, ure, lokacije, storitve in naroca termine neposredno v Google Calendar / Cal.com. Razume kontekst: "Ali imate lasersko beljenje zob?" → primeren odgovor + ponudba termina.
+    </div>
+    <div class="stack">
+      <div class="stack-title">🛠️ Tehnologije (Solo Stack)</div>
+      <p>
+        <strong>Frontend/UI:</strong> <code>Voiceflow</code> ali <code>Botpress</code> (vizualno, brez kode) ali lasten <code>Next.js</code> widget.<br>
+        <strong>AI možgani:</strong> <code>OpenAI GPT-4o API</code> — slovenščina je že dobro razumljiva; za boljši rezultat dodaj <strong>prompt engineering</strong> z lokalnimi podatki.<br>
+        <strong>Pomnilnik:</strong> <code>Pinecone</code> ali <code>Supabase pgvector</code> za RAG (cennik, pogosta vprašanja, odpiralni čas).<br>
+        <strong>Avtomatizacija:</strong> <code>n8n</code> ali <code>Make</code> za povezavo s koledarjem, emailom in SMS (Twilio / 46elks).<br>
+        <strong>Deploy:</strong> <code>Vercel</code> (frontend) + <code>Supabase</code> (podatkovna baza in auth).<br>
+        <strong>Plačila:</strong> <code>Stripe</code> (preprosta naročnina).
+      </p>
+    </div>
+    <p><strong>Strategija prodaje:</strong> Pojdi osebno. Izberi 10 salonov/ordinacij v svoji ulici/mestu. Ponudi <strong>1 teden brezplačno</strong>. Če rezervacije narastejo za 15 %, imajo dokaz vrednosti. Podpiši letno pogodbo s 15 % popustom.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="card-num">#2</span><span class="card-title">AI Avtomatizacija računovodskih procesov za S.P. in D.O.O.</span></div>
+    <div class="card-tags">
+      <span class="tag">Micro-SaaS</span><span class="tag">B2B</span><span class="tag tag-blue">🏔️ FURS / UJP / eDavki</span><span class="tag">€€€€</span>
+    </div>
+    <div class="problem-box">
+      <strong>Realen problem:</strong> Samostojni podjetnik s spletno trgovino prejme 60 računov mesečno. Ročno jih razvrsti v osebne in poslovne, preveri DDV, skenira in pošlje računovodkinji. Vsak račun vzame 3 minute = <strong>3 ure na teden</strong>. Poleg tega vsako četrtletje ročno izpolni eDavke za DDV. Če zamudi FURS plačilo za 1 dan: kazen 500–2.000 €.
+    </div>
+    <div class="money-box">
+      💰 <strong>Koliko denarja rešiš:</strong> Podjetnikov čas je vreden 30–60 €/uro. Pri 12 urah/mesec je to <strong>360–720 € mesečno</strong> v času, ki ga AI vzame nazaj. Za podjetje z 2 zaposlenima je to avtomatsko 1.000+ € vrednosti.
+    </div>
+    <div class="solution-box">
+      <strong>Kako AI reši:</strong> Slika računa → GPT-4o Vision (OCR + razumevanje) → ekstrakcija prodajalec, znesek, DDV, datum → avtomatska klasifikacija (poslovni/osebni) → izvoz v CSV / eRačun XML → predizpolnitev eDavki obrazca → opomnik za plačilo.
+    </div>
+    <div class="stack">
+      <div class="stack-title">🛠️ Tehnologije (Solo Stack)</div>
+      <p>
+        <strong>OCR + razumevanje:</strong> <code>OpenAI GPT-4o Vision API</code> ali <code>Google Document AI</code>.<br>
+        <strong>Workflow:</strong> <code>n8n</code> — poveže email (Gmail/Outlook), pobere priloge, požene OCR, shrani v bazo, pošlje v eDavke / Minimax / Pantheon (če ima API).<br>
+        <strong>Baza:</strong> <code>Supabase</code> (PostgreSQL) za strukturirane račune in auth.<br>
+        <strong>Frontend:</strong> <code>Next.js</code> (dashboard za pregled in potrjevanje).<br>
+        <strong>eDavki:</strong> Zaenkrat ročni izvoz XML/CSV, ki ga uporabnik uvozi; v prihodnosti direktna integracija, ko bo FURS odprl API.<br>
+        <strong>Plačila:</strong> <code>Stripe</code>, naročniški model 29–79 €/mesec.
+      </p>
+    </div>
+    <p><strong>Tržni kontekst:</strong> Minimax in Pantheon nista AI-native. Ne moreta samodejno klasificirati računov iz slike. Tvoja prednost je <strong>inteligenca nad obstoječim stackom</strong>, ne namesto njega.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="card-num">#3</span><span class="card-title">AI Turistični Chatbot &amp; Booking Assistant</span></div>
+    <div class="card-tags">
+      <span class="tag">Vertical SaaS</span><span class="tag">B2B</span><span class="tag tag-blue">🏔️ Večjezičnost (SLO/DE/EN/IT)</span><span class="tag">€€€€</span>
+    </div>
+    <div class="problem-box">
+      <strong>Realen problem:</strong> Majhen hotel na Bledu ali turistična kmetija na Goriškem dobi 40 % povpraševanj iz tujine (Nemčija, Italija, Avstrija). Gostje pišejo ob 23. uri v nemščini. Lastnik spi. Do jutra gost že rezervira pri konkurenci na Booking.com. Dodatno: kadrovska kriza v turizmu — število šolajočih v gostinskih poklicih se je zmanjšalo za 30 %, zato primanjkuje osebja za odzivanje.
+    </div>
+    <div class="money-box">
+      💰 <strong>Koliko denarja rešiš:</strong> Neprijavljena nočitev v hotelu s 50 ležišči pri ceni 120 €/noč = <strong>6.000 € izgubljenega prihodka na mesec</strong>, če je zasedenost zaradi počasnega odziva nižja za 10 %. Če bot reši samo 5 nočitev/mesec, je vreden 600 €.
+    </div>
+    <div class="solution-box">
+      <strong>Kako AI reši:</strong> Večjezični AI asistent, ki odgovarja v slovenščini, nemščini, angleščini in italijanščini. Povezan z iCal koledarjem Booking.com in Airbnb — v realnem času preverja proste termine. Odgovori na vprašanja o wifi, parkirišču, hišnih ljubljenčkih, zajtrku in ceni. Avtomatsko pošlje predračun.
+    </div>
+    <div class="stack">
+      <div class="stack-title">🛠️ Tehnologije (Solo Stack)</div>
+      <p>
+        <strong>AI jedro:</strong> <code>GPT-4o API</code> z <strong>system promptom</strong> za večjezičnost in hospitality tone.<br>
+        <strong>RAG:</strong> <code>LlamaIndex</code> + <code>Pinecone</code> — baza pravil hotela, cenik, pogosta vprašanja, lokalne zanimivosti.<br>
+        <strong>Koledar:</strong> <code>iCal sync</code> z Booking.com / Airbnb / direktno rezervacijsko bazo.<br>
+        <strong>Avtomatizacija:</strong> <code>Make.com</code> ali <code>n8n</code> za potrditvene emaile in predračune.<br>
+        <strong>Frontend:</strong> <code>Next.js</code> embed widget (kopiraj-prilepi na spletno stran gosta).<br>
+        <strong>Backend:</strong> <code>Supabase</code> za pogovore in auth.
+      </p>
+    </div>
+    <p><strong>Zakaj Blue Ocean:</strong> Globalna orodja (Intercom, Tidio) ne razumejo konteksta slovenskega turizma — terme, turistične kmetije, sezonske cene, lokalni zajtrk. Ti razumeš. Zato lahko zaračunaš 99–299 €/mesec za namestitev, agencija pa prodaja še 10 takih namestitev mesečno.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="card-num">#4</span><span class="card-title">AI Social Media Manager za slovenska lokalna podjetja</span></div>
+    <div class="card-tags">
+      <span class="tag">Micro-SaaS</span><span class="tag">Agencija + AI</span><span class="tag tag-blue">🏔️ Lokalni kontekst</span><span class="tag">€€€</span>
+    </div>
+    <div class="problem-box">
+      <strong>Realen problem:</strong> Restavracija v Ljubljani (ali salon v Kopru) plačuje marketing agencijo 500–800 €/mesec za 12 objav. Objave so generične — stock fotografije hamburgerjev, ki niso njeni. Lastnik nima časa za Instagram, a ve, da mora biti tam. Če ne objavi 2 tedna, algoritem jo "pozabi" — organic reach pade za 40 %.
+    </div>
+    <div class="money-box">
+      💰 <strong>Koliko denarja rešiš:</strong> Agencija stane 6.000–10.000 €/leto. AI orodje 79–199 €/mesec = <strong>pod 2.400 €/leto</strong>. Razlika je očitna. Za podjetja sami ustvarijo 3–5 kakovostnih objav tedensko namesto 0.
+    </div>
+    <div class="solution-box">
+      <strong>Kako AI reši:</strong> Podjetje naloži fotografije iz telefona (hrana, ekipa, dogodki). AI (GPT-4o + DALL-E 3 / Ideogram) generira copy v slovenščini z lokalnimi prazniki, memi in CTA-ji. Scheduler (preko Buffer/Typefully API) objavi ob optimalnem času. Lastnik odobri v 2 minutah.
+    </div>
+    <div class="stack">
+      <div class="stack-title">🛠️ Tehnologije (Solo Stack)</div>
+      <p>
+        <strong>Generacija vsebine:</strong> <code>OpenAI GPT-4o</code> za copy, <code>DALL-E 3</code> / <code>Ideogram</code> / <code>Canva API</code> za vizuale.<br>
+        <strong>CMS/Approval:</strong> <code>Airtable</code> ali preprost <code>Next.js</code> dashboard, kjer lastnik vidi osnutke in odobri z ✅.<br>
+        <strong>Scheduler:</strong> <code>Buffer API</code> ali <code>Typefully</code> za avtomatsko objavljanje na Instagram/Facebook.<br>
+        <strong>Scenarij:</strong> <code>Make.com</code> scenarij: Nov e-mail s priponko → GPT napiše opis → Buffer naroči objavo → Obvestilo lastniku za review.
+      </p>
+    </div>
+    <p><strong>Vibecoder pristop:</strong> V 1 tednu zgradiš prototip v Make + Notion + Buffer. Pokažeš 2 lastnikoma. Če objavljata redno brez napora, imata dokaz. Naročnino zaračunaš šele v 3. tednu.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="card-num">#5</span><span class="card-title">AI Avtomatizacija ponudb in pogodb za obrtnike</span></div>
+    <div class="card-tags">
+      <span class="tag">Micro-SaaS / Mobile App</span><span class="tag">B2B</span><span class="tag tag-blue">🏔️ OZS / Slovensko pravo</span><span class="tag">€€€</span>
+    </div>
+    <div class="problem-box">
+      <strong>Realen problem:</strong> Električar v Ljubljani pride na ogled, naredi ročne meritve v zvezek, zvečer vpiše v Word, poišče cene materiala v spletni trgovini, izračuna DDV in pošlje PDF po emailu. Vsaka ponudba traja <strong>2–4 ure</strong>. Uspešnost je 30 %. Pri 10 ponudbah na mesec to pomeni 20–40 ur zamujenega časa.
+    </div>
+    <div class="money-box">
+      💰 <strong>Koliko denarja rešiš:</strong> Čas vodje = 40 €/uro. 30 ur/mesec × 40 € = <strong>1.200 € mesečno</strong> v tipkanju. AI to skrči na 30 minut na ponudbo.
+    </div>
+    <div class="solution-box">
+      <strong>Kako AI reši:</strong> Vodja na terenu v mobilno aplikacijo vnese mere, izbere material iz kataloga (s cenami v realnem času), AI generira ponudbo v PDF z OZS standardizirano strukturo + pogodbo o podizvodji. Pošlje v 2 minutah.
+    </div>
+    <div class="stack">
+      <div class="stack-title">🛠️ Tehnologije (Solo Stack)</div>
+      <p>
+        <strong>Mobilna aplikacija:</strong> <code>Flutter</code> (1 koda za Android + iOS) ali <code>React Native</code>. Za MVP dovolj <strong>PWA</strong> v <code>Next.js</code>.<br>
+        <strong>AI generacija:</strong> <code>GPT-4o</code> za besedilo ponudbe; <code>Puppeteer</code> ali <code>PDF-lib.js</code> za generacijo PDF-ja iz HTML predloge.<br>
+        <strong>Baza materialov:</strong> <code>Supabase</code> — tabela materialov s cenami (ročno naložiš začetni set, potem uporabnik doda svoje).<br>
+        <strong>Deploy:</strong> <code>Supabase</code> (auth + DB) + <code>Vercel</code> (web app).<br>
+        <strong>Plačila:</strong> <code>Stripe</code> ali direktni trr (za začetek).
+      </p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="card-num">#6</span><span class="card-title">AI Generator opisov produktov za slovenski e-commerce</span></div>
+    <div class="card-tags">
+      <span class="tag">Plugin (Woo / Shopify)</span><span class="tag">B2C + B2B</span><span class="tag tag-blue">🏔️ SLO + DE + EN</span><span class="tag">€€€</span>
+    </div>
+    <div class="problem-box">
+      <strong>Realen problem:</strong> Lastnik spletne trgovine z LED lučmi, pohištvom ali kozmetiko ima 400 produktov. Opisi so kopirani iz dobaviteljevih katalogov (slab SEO) ali jih sam piše 10 minut na kos. Za 400 produktov je to <strong>67 ur</strong>. Hkrati želi izvoziti v Nemčijo in Avstrijo, a ne zna prevesti v nemščino. Prevodna agencija zaračuna 15 €/stran — za 400 produktov = 6.000 €.
+    </div>
+    <div class="money-box">
+      💰 <strong>Koliko denarja rešiš:</strong> SEO opisi povečajo organic reach za 20–50 %. Pri 10.000 € mesečnega prometa je to <strong>2.000–5.000 € dodatnega prihodka</strong>. Prevedeni opisi omogočijo izvoz brez 6.000 € stroška.
+    </div>
+    <div class="solution-box">
+      <strong>Kako AI reši:</strong> Plugin za WooCommerce / Shopify: klikneš na produkt → AI napiše unikaten SEO opis v slovenščini (z keywordi) → en klik za prevod v nemščino in angleščino (DeepL + GPT proofreading). Serijska obdelava 100 produktov naenkrat.
+    </div>
+    <div class="stack">
+      <div class="stack-title">🛠️ Tehnologije (Solo Stack)</div>
+      <p>
+        <strong>Platforma:</strong> <code>Shopify App</code> (Remix / Next.js) ali <code>WooCommerce plugin</code> (PHP + React admin page).<br>
+        <strong>AI:</strong> <code>OpenAI Batch API</code> za poceni serijsko obdelavo. <code>DeepL API</code> za prevod + <code>GPT-4o</code> za proofreading in tone adjustment.<br>
+        <strong>SEO:</strong> V prompt vgradiš ključne besede iz <code>ahrefs</code> / <code>Ubersuggest</code>.<br>
+        <strong>Baza:</strong> <code>Supabase</code> za predpomnjenje prevedenih opisov.<br>
+        <strong>Plačila:</strong> Naročnina 49–99 €/mesec + overage glede na število opisov.
+      </p>
+    </div>
+  </div>
+
+  <h3>🎯 Ključna pravila za Tier 1</h3>
+  <ul>
+    <li><strong>Ne zgradi ERP-ja.</strong> Zgradi eno stvar, ki jo ljudje razumejo v 10 sekundah.</li>
+    <li><strong>Cena mora biti "no-brainer."</strong> Če podjetnik plačuje 1.200 €/mesec za asistenta, je 49 €/mesec za avtomatizacijo očitna odločitev.</li>
+    <li><strong>V Sloveniji prodajaš osebno.</strong> 90 % prvih strank bo prišlo iz osebnega pogovora, ne iz Facebook oglasa. Pojdi v podjetja, pokaži demo na telefonu.</li>
+    <li><strong>CEE ekspanzija od dne 1.</strong> Hrvaški podjetnik ima enak problem. Avstrijski tudi. Ko imaš 5 SLO strank, prevedi landing page v HR in DE.</li>
+  </ul>
+</section>
+
+<!-- TIER 2 -->
+<section id="tier2">
+  <h2>🟡 Tier 2 — Srednja težavnost, soliden ROI (3–6 mesecev)</h2>
+  <p class="section-lead">Za majhno ekipo (2–5 ljudi). Višji vložek, a tudi letne naročnine 500–2.000 €/mesec. Nujno je panožno znanje — računovodstvo, pravo, HR, industrija.</p>
+
+  <div class="card card-amber">
+    <div class="card-header"><span class="card-num">#7</span><span class="card-title">AI Razpisni Asistent (EU sredstva &amp; subvencije)</span></div>
+    <div class="card-tags">
+      <span class="tag">AI Agent / B2B SaaS</span><span class="tag tag-blue">🏔️ SPS, SPIRIT, JAPTI</span><span class="tag">€€€€€</span>
+    </div>
+    <div class="problem-box">
+      <strong>Realen problem:</strong> Srednje veliko podjetje (30 zaposlenih) želi pridobiti 100.000 € nepovratnih sredstev iz javnega razpisa P4D. Priprava vloge traja <strong>80–120 ur</strong> internega časa — to je 4.000–6.000 € stroška dela, če računaš 50 €/uro. 60 % vlog je zavrnjenih zaradi tehničnih napak (nepopolna dokumentacija, napačna finančna tabela, zamujen rok). Podjetje zamudi priložnost in naslednjič ne ve, da razpis sploh obstaja.
+    </div>
+    <div class="money-box">
+      💰 <strong>Koliko denarja rešiš:</strong> Če AI agent poveča uspešnost prijave iz 40 % na 70 %, podjetje pridobi <strong>+30.000 €</strong> na vsak uspešen razpis. Strošek tvojega orodja: 200–500 €/mesec. ROI: 60×.
+    </div>
+    <div class="solution-box">
+      <strong>Kako AI reši:</strong> Spletni "crawler" dnevno pregleduje javne razpise (e-nabava, SPIRIT, JAPTI, EU). AI prebere pogoje in jih primerja s profilom podjetja (velikost, sektor, zgodovina). Če je podjetje primerno, pošlje opozorilo z oceno verjetnosti uspeha. Nato AI generira osnutek vloge (finančni plan, opis projekta) na podlagi prejšnjih uspešnih vlog (RAG).
+    </div>
+    <div class="stack">
+      <div class="stack-title">🛠️ Tehnologije (Ekipni Stack)</div>
+      <p>
+        <strong>Scraping:</strong> <code>Playwright</code> ali <code>Scrapy</code> za dinamične javne strani; <code>RSS/API</code> kjer obstaja.<br>
+        <strong>RAG + AI:</strong> <code>LangChain</code> ali <code>LlamaIndex</code> + <code>Pinecone/Weaviate</code>. Baza: PDF navodila razpisov + arhiv prejšnjih vlog.<br>
+        <strong>AI agent:</strong> <code>OpenAI GPT-4o</code> / <code>Anthropic Claude</code> s <strong>function calling</strong> — lahko izračuna finančne kazalnike, izvozi v Word.<br>
+        <strong>Workflow:</strong> <code>Temporal.io</code> ali <code>n8n</code> za dolgotrajne procese (zbiranje dokumentov, review cikel).<br>
+        <strong>Frontend:</strong> <code>Next.js</code> (dashboard za projekte in vloge).<br>
+        <strong>Baza:</strong> <code>PostgreSQL</code> (Supabase ali AWS RDS).<br>
+        <strong>Doc generation:</strong> <code>python-docx</code> ali <code>Pandoc</code> za strukturirane dokumente.
+      </p>
+    </div>
+    <p><strong>Prodaja:</strong> Organiziraj brezplačen webinar za 20 direktorjev MSP. Pokaži, koliko denarja so zamudili v zadnjem letu. Ponudi "audit" — brezplačno preverimo, na katere razpite ste upravičeni. 30 % bo podpisalo naročnino.</p>
+  </div>
+
+  <div class="card card-amber">
+    <div class="card-header"><span class="card-num">#8</span><span class="card-title">AI Kadrovski Asistent za iskanje in uvajanje tujcev</span></div>
+    <div class="card-tags">
+      <span class="tag">B2B SaaS / HR Tech</span><span class="tag tag-blue">🏔️ Deficit 13.000 ICT, zdravnikov, gradbincev</span><span class="tag">€€€€</span>
+    </div>
+    <div class="problem-box">
+      <strong>Realen problem:</strong> Gradbeno podjetje v Celju zaposli 20 hrvaških in bosanskih delavcev. Postopek integracije: urejanje delovnih dovoljenj, prevod pogodb, zdravstveni pregledi, vpis v ZZZS, jezikovna uravnoteženost ekip. Brez pomoči odvetnika in prevajalca strošek znaša <strong>3.000–5.000 €</strong> na val zaposlitev. Integracija traja 3 mesece. Delavci vmes ne razumejo varnostnih navodil — tveganje nesreč narašča.
+    </div>
+    <div class="money-box">
+      💰 <strong>Koliko denarja rešiš:</strong> Vsaka zamujena zaposlitev zaradi birokracije stane podjetje 2.000–4.000 € v izgubljenem dohodku. Če AI skrajša integracijo z 3 mesecev na 3 tedne, je to <strong>8.000+ € prihranka</strong> na delavca.
+    </div>
+    <div class="solution-box">
+      <strong>Kako AI reši:</strong> Platforma, ki avtomatsko prevaja delovne pogodbe, navodila in varnostne listke v jezik delavca (GPT-4 + pravni RAG). Govorni vmesnik (Whisper za razumevanje, TTS za odgovor) omogoča osnovno komunikacijo na gradbišču. Dashboard HR managerju prikazuje status vseh dokumentov (FURS, ZZZS, ZPIZ).
+    </div>
+    <div class="stack">
+      <div class="stack-title">🛠️ Tehnologije (Ekipni Stack)</div>
+      <p>
+        <strong>NLP / prevod:</strong> <code>OpenAI GPT-4o</code> za prevod pogodb; <code>DeepL API</code> za prvi osnutek; <strong>RAG</strong> nad <code>ZDR-1</code>, <code>Zakon o tujcih</code> in <code>varnostnimi predpisi</code>.<br>
+        <strong>Govorni vmesnik:</strong> <code>OpenAI Whisper</code> ( Speech-to-Text) + <code>ElevenLabs</code> ali <code>OpenAI TTS</code> za slovensko/hrvaško izgovorjavo.<br>
+        <strong>Admin dashboard:</strong> <code>Next.js</code> + <code>Tailwind</code> + <code>Supabase</code>.<br>
+        <strong>Workflow:</strong> <code>n8n</code> za obveščanje FURS / ZZZS (ko so dokumenti pripravljeni).<br>
+        <strong>PDF:</strong> <code>Puppeteer</code> za generacijo uradnih obrazcev.
+      </p>
+    </div>
+  </div>
+
+  <div class="card card-amber">
+    <div class="card-header"><span class="card-num">#9</span><span class="card-title">AI Platforma za učenje slovenščine (za tuje delavce)</span></div>
+    <div class="card-tags">
+      <span class="tag">B2B / B2C App</span><span class="tag tag-blue">🏔️ Edinstvena globalno</span><span class="tag">€€€€</span>
+    </div>
+    <div class="problem-box">
+      <strong>Realen problem:</strong> Delodajalec mora po ZDR-1 zagotoviti brezplačne tečaje slovenščine za tuje delavce. Obstoječi tečaji (npr. v okviru LUV) so generični in potekajo v živo 1× tedensko. Delavec se uči "književnost" namesto fraz, ki jih potrebuje: "Pazite, padajoči predmet!", "Kje je wc?", "Pokličite rešilca!". Učinkovitost je nizka, odpovedi visoke.
+    </div>
+    <div class="money-box">
+      💰 <strong>Koliko denarja rešiš:</strong> Vsaka nesreča zaradi nerazumevanja navodil stane podjetje 5.000–50.000 € (zdravstvo, ZZZS, izpad dela). Preventivno investicijo v jezikovno orodje zato financirajo z veseljem.
+    </div>
+    <div class="solution-box">
+      <strong>Kako AI reši:</strong> Personaliziran AI učni asistent, ki se prilagaja poklicu (gradbeništvo: varnostne fraze; gostinstvo: naročanje hrane; IT: tehnična terminologija). Govorna interakcija (Whisper + TTS). SRS algoritem (spaced repetition) za pomnjenje. Delodajalec vidi napredek na dashboardu.
+    </div>
+    <div class="stack">
+      <div class="stack-title">🛠️ Tehnologije (Ekipni Stack)</div>
+      <p>
+        <strong>App:</strong> <code>React Native</code> ali <code>Flutter</code> (Android + iOS). Za MVP PWA v <code>Next.js</code>.<br>
+        <strong>AI tutor:</strong> <code>GPT-4o</code> s <strong>fine-tunanimi prompti</strong> za poklicno slovenščino.<br>
+        <strong>SRS:</strong> Lasten algoritem v <code>Python/Node.js</code> ali <code>Supabase</code> edge functions.<br>
+        <strong>Speech:</strong> <code>Whisper API</code> za diktiranje, <code>ElevenLabs</code> za izgovorjavo.<br>
+        <strong>Baza:</strong> <code>Supabase</code> za uporabnike, napredek, auth.<br>
+        <strong>B2B dashboard:</strong> <code>Next.js</code> za HR, ki spremlja napredek zaposlenih.
+      </p>
+    </div>
+  </div>
+
+  <div class="card card-amber">
+    <div class="card-header"><span class="card-num">#10</span><span class="card-title">AI Pravni Asistent za slovensko pravo (S.P. in MSP)</span></div>
+    <div class="card-tags">
+      <span class="tag">Micro-SaaS / B2B</span><span class="tag tag-blue">🏔️ ZDR-1, ZGD-1, ZVOP-2</span><span class="tag">€€€€</span>
+    </div>
+    <div class="problem-box">
+      <strong>Realen problem:</strong> S.P. sklene letno 10–15 pogodbenih razmerij (najem prostora, sodelovanje s freelancerji, dobavne pogodbe). Odvetnik zaračuna 150–300 € na pogodbo. Čas izdelave: 3–7 dni. Za 15 pogodb je to <strong>2.250–4.500 € letno</strong> in 2 tedna čakanja. Za enostavne zadeve (najemna pogodba, sklep o ustanovitvi) je to predrago.
+    </div>
+    <div class="money-box">
+      💰 <strong>Koliko denarja rešiš:</strong> AI orodje 29–99 €/mesec = 350–1.200 €/leto. Prihranki: <strong>1.000–3.000 € letno</strong> za S.P. Prihranki časa: namesto 2 tednov čakanja → 5 minut generiranja + 15 minut review.
+    </div>
+    <div class="solution-box">
+      <strong>Kako AI reši:</strong> Uporabnik izbere tip pogodbe (najem, delo, kupoprodaja), vnese podatke (ime, znesek, rok). AI generira skladen osnutek po Zakonu o obligacijskih razmerjih, ZDR-1 in ZGD-1. Opcija: primerjava s podobnimi pogodbami iz baze (RAG). Review odvetnika (opcija) za zapletene primere.
+    </div>
+    <div class="stack">
+      <div class="stack-title">🛠️ Tehnologije (Ekipni Stack)</div>
+      <p>
+        <strong>AI core:</strong> <code>OpenAI GPT-4o</code> ali fine-tune <code>Mistral 7B / Llama 3</code> na slovenskih pravnih tekstih (CC BY-NI pravni korpus). <strong>RAG</strong> nad <code>ZOR</code>, <code>ZDR-1</code>, <code>ZGD-1</code>.<br>
+        <strong>PDF:</strong> <code>Puppeteer</code> + HTML predloge za uravnotežene pogodbe.<br>
+        <strong>ePodpis:</strong> Integracija z <code>SignRequest</code>, <code>DocuSign</code> ali <code>local e-sign</code> (eDavki).<br>
+        <strong>Frontend:</strong> <code>Next.js</code> (wizard za vnos podatkov).<br>
+        <strong>Baza predlog:</strong> <code>Supabase</code> — RAG vektorji + strukturirane predloge.
+      </p>
+    </div>
+    <p><strong>Opozorilo:</strong> To ni odvetnik. Jasno napiši disclaimer: "Orodje generira osnutke na podlagi splošnih pravnih informacij. Za zapletene zadeve se posvetujte z odvetnikom." Transparentnost gradi zaupanje.</p>
+  </div>
+
+  <div class="card card-amber">
+    <div class="card-header"><span class="card-num">#11</span><span class="card-title">AI Rešitev za avtomatizacijo procesov v predelovalni industriji</span></div>
+    <div class="card-tags">
+      <span class="tag">Industry 4.0 / IoT + AI</span><span class="tag tag-blue">🏔️ Predelovalna industrija</span><span class="tag">€€€€€</span>
+    </div>
+    <div class="problem-box">
+      <strong>Realen problem:</strong> Srednje veliko predelovalno podjetje (50 zaposlenih, kovinarstvo/plastika) ima OEE (Overall Equipment Effectiveness) 60 %. Evropski benchmark je 85 %. Razlika pomeni <strong>20–30 % izgubljene produkcije</strong> zaradi neplaniranih zastojev, slabega planiranja in odvečnih zalog. Ročno planiranje v Excelu nepredvidi okvar. Nabavni oddelek naroči material "na oko" — polovica zaloge zaseda dragoceni skladiščni prostor, druga polovica zmanjka sredi meseca.
+    </div>
+    <div class="money-box">
+      💰 <strong>Koliko denarja rešiš:</strong> Pri 2M € letnega prometa je 10 % izboljšava OEE = <strong>200.000 € dodatnega prihodka</strong>. Reduciranje zalog za 20 % sprosti <strong>50.000 €</strong> v obtoku.
+    </div>
+    <div class="solution-box">
+      <strong>Kako AI reši:</strong> IoT senzorji na strojih (vibracija, temperatura, tok) pošiljajo podatke v cloud. AI model (anomaly detection) napove okvaro 3–7 dni vnaprej. Dashboard prikaže OEE v realnem času. AI planer optimizira vrstni red proizvodnje glede na zaloge, roke in stroške.
+    </div>
+    <div class="stack">
+      <div class="stack-title">🛠️ Tehnologije (Ekipni Stack)</div>
+      <p>
+        <strong>IoT:</strong> <code>Node-RED</code> (zbiranje podatkov iz senzorjev preko MQTT) + <code>InfluxDB</code> ali <code>TimescaleDB</code> za časovne vrste.<br>
+        <strong>ML:</strong> <code>Python</code> + <code>scikit-learn / PyTorch</code> za anomaly detection; <code>Prophet</code> ali <code>LightGBM</code> za napovedovanje povpraševanja.<br>
+        <strong>Dashboard:</strong> <code>Grafana</code> ali lasten <code>Next.js</code> dashboard za vodstvo.<br>
+        <strong>ERP integracija:</strong> API ali CSV export v <code>Pantheon</code> / <code>Navision</code>.<br>
+        <strong>Deploy:</strong> On-premise <code>Docker</code> (podjetja nočejo oblaka za proizvodne podatke) ali <code>AWS/Azure</code> private cloud.
+      </p>
+    </div>
+  </div>
+
+  <div class="card card-amber">
+    <div class="card-header"><span class="card-num">#12</span><span class="card-title">AI Asistent za gradbeništvo — ponudbe, plani, podizvajalci</span></div>
+    <div class="card-tags">
+      <span class="tag">Vertical B2B SaaS</span><span class="tag tag-blue">🏔️ Najmanj digitaliziran sektor v SLO</span><span class="tag">€€€€€</span>
+    </div>
+    <div class="problem-box">
+      <strong>Realen problem:</strong> Gradbeno podjetje (20 zaposlenih) pripravlja 5–8 ponudb mesečno za večje projekte (100.000–2M €). Vsaka ponudba zahtava: kalkulacijo materiala (Excel), plan dela (Project / Gantt v Excelu), koordinacijo 3–5 podizvajalcev (telefoni, emaili, zamude). Kalkulacija je ročna — odstopanje od dejanskih stroškov je povprečno <strong>10–15 %</strong>. Na projektu za 500.000 € je to 50.000–75.000 € izgube ali izgubljenega dobička.
+    </div>
+    <div class="money-box">
+      💰 <strong>Koliko denarja rešiš:</strong> Natančnejša kalkulacija zmanjša odstopanje s 15 % na 3 %. Pri 2M € prometa letno je to <strong>+240.000 €</strong>, ki jih ne izgubiš. Avtomatska koordinacija podizvajalcev prihrani 30 ur/mesec vodje.
+    </div>
+    <div class="solution-box">
+      <strong>Kako AI reši:</strong> Platforma, kamor vodja vnese tip projekta, kvadraturo in lokacijo. AI (RAG nad arhivom prejšnjih projektov) predlaga kalkulacijo materiala in dela. Avtomatsko generira Ganttov diagram. Sistem sledi podizvajalcem — avtomatsko pošilja opomnike, zbira poročila o napredku (preko mobilne aplikacije) in opozori na zamude.
+    </div>
+    <div class="stack">
+      <div class="stack-title">🛠️ Tehnologije (Ekipni Stack)</div>
+      <p>
+        <strong>AI kalkulacija:</strong> <code>LangChain</code> + <code>Weaviate/Pinecone</code> — RAG nad arhivom preteklih projektov (povzameni cene na enoto).<br>
+        <strong>Planiranje:</strong> <code>React</code> komponenta z <code>DHTMLX Gantt</code> ali <code>vis-timeline</code>.<br>
+        <strong>Mobilna aplikacija:</strong> <code>Flutter</code> za vodje gradbišč in podizvajalce (fotografije napredka, poročila).<br>
+        <strong>Backend:</strong> <code>FastAPI</code> (Python) ali <code>Node.js</code> + <code>PostgreSQL</code>.<br>
+        <strong>Workflow:</strong> <code>Temporal</code> ali <code>n8n</code> za opomnike in statusne prehode.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- TIER 3-4 -->
+<section id="tier3">
+  <h2>🔴🔴 Tier 3–4 — Najtežji, največ denarja (6–18 mesecev)</h2>
+  <p class="section-lead">Enterprise, GovTech, finančni in industrijski produkti. Zahtevajo financiranje, strokovno ekipo in dolgoročno vizijo. Nagrada: letne pogodbe 20.000–100.000 €+, regionalni monopol, državne koncesije.</p>
+
+  <div class="card card-indigo">
+    <div class="card-header"><span class="card-num">#13</span><span class="card-title">AI Vertical ERP za slovensko predelovalno industrijo</span></div>
+    <div class="card-tags">
+      <span class="tag">Enterprise / Vertical SaaS</span><span class="tag tag-blue">🏔️ Alternativa Pantheon / Navision</span><span class="tag">€€€€€€</span>
+    </div>
+    <div class="problem-box">
+      <strong>Realen problem:</strong> Pantheon licenca za 30 zaposlene: 8.000–15.000 €/leto. Implementacija Navision: 30.000–80.000 €. Oba sistema nimata vgrajene AI analitike. Proizvodni planer še vedno izvaže podatke v Excel, da naredi napoved. CEO nima real-time vpada v OEE, cash flow iz proizvodnje ali napovedi okvar. Posledica: odločitve temeljijo na občutku, ne na podatkih.
+    </div>
+    <div class="money-box">
+      💰 <strong>Koliko denarja rešiš:</strong> Letna pogodba za vertikalni ERP: 20.000–100.000 €/podjetje. V Sloveniji je 500+ predelovalnih podjetij s 20+ zaposlenimi. Celoten trg: <strong>10M–50M € letno</strong>. Če zajameš 5 % trga v 3 letih, imaš 2,5M € ARR.
+    </div>
+    <div class="solution-box">
+      <strong>Kako AI reši:</strong> ERP, zgrajen "AI-first." Moduli: napovedovanje povpraševanja (ML), avtomatsko naročanje surovin glede na napoved, real-time OEE dashboard, AI-koordinacija logistike, ESG sledenje za EU taksonomijo. Povezljivost s starimi sistemi (Pantheon/Navision API ali CSV bridge) — ne nadomestiš, ampak inteligentno nadgradiš.
+    </div>
+    <div class="stack">
+      <div class="stack-title">🛠️ Tehnologije (Enterprise Stack)</div>
+      <p>
+        <strong>Frontend:</strong> <code>Next.js</code> (začasno), kasneje <code>React</code> z <code>TanStack Query</code>.<br>
+        <strong>Backend:</strong> <code>FastAPI</code> (Python) ali <code>NestJS</code> (Node). <strong>Microservices</strong> za skalabilnost.<br>
+        <strong>AI layer:</strong> <code>Python</code> servisi ( forecasting, NLP, computer vision za kvaliteto). <code>Kubeflow</code> ali <code>MLflow</code> za MLOps.<br>
+        <strong>Baza:</strong> <code>PostgreSQL</code> (transakcije) + <code>ClickHouse</code> ali <code>TimescaleDB</code> (analitika) + <code>Redis</code> (cache).<br>
+        <strong>Deploy:</strong> <code>Kubernetes</code> (on-premise ali private cloud — industrija noče javnega oblaka).<br>
+        <strong>Integracije:</strong> REST API + CSV/XML bridge za stare ERPje.
+      </p>
+    </div>
+  </div>
+
+  <div class="card card-indigo">
+    <div class="card-header"><span class="card-num">#14</span><span class="card-title">AI CEE Expansion Platform — Slovenija kot regionalni Hub</span></div>
+    <div class="card-tags">
+      <span class="tag">Enterprise / API / B2B</span><span class="tag tag-blue">🏔️ CEE–DACH koridor</span><span class="tag">€€€€€€</span>
+    </div>
+    <div class="problem-box">
+      <strong>Realen problem:</strong> SLO izvoznik LED luči želi prodajati na Hrvaškem. Potrebuje: prevedeno spletno stran, prilagojene DDV pravila (25 % na HR), drugačno embalažno direktivo, carinsko dokumentacijo, pogodbe v hrvaščini po hrvaškem pravu. Ročno to ureja 2 zaposlena. Strošek: <strong>4.000–6.000 €/mesec</strong>. Čas do aktivne prodaje: 4–6 mesecev.
+    </div>
+    <div class="money-box">
+      💰 <strong>Koliko denarja rešiš:</strong> Če platforma skrajša čas ekspanzije s 6 mesecev na 2 tedna in strošek na 500 €/mesec, je to <strong>5.500 €/mesec prihranka</strong> na trg. SLO podjetja v povprečju ciljajo na 3–5 trgov. Prihranki: 200.000 €/leto na podjetje.
+    </div>
+    <div class="solution-box">
+      <strong>Kako AI reši:</strong> Multi-tenant SaaS: uporabnik izbere trg (HR, RS, BA, AT, IT, HU). AI avtomatsko lokalizira: prevod spletne strani (DeepL + GPT + legal proofreading), prilagodi DDV/pravila (RAG nad lokalno zakonodajo), generira carinske kode in pogodbe. Logistični modul poveže DHL/UPS/carino z avtomatsko dokumentacijo.
+    </div>
+    <div class="stack">
+      <div class="stack-title">🛠️ Tehnologije (Enterprise Stack)</div>
+      <p>
+        <strong>Multi-tenancy:</strong> <code>PostgreSQL</code> z row-level security ali ločene sheme na tenant.<br>
+        <strong>AI localization:</strong> <code>LangChain</code> + vektorne baze z lokalnimi pravnimi in davčnimi corpora. <code>GPT-4o</code> + <code>DeepL</code>.<br>
+        <strong>API integracije:</strong> <code>FastAPI</code> gateway za DHL, FedEx, carinske API-je, Shopify/Woo.<br>
+        <strong>Frontend:</strong> <code>Next.js</code> dashboard za upravljanje trgov.<br>
+        <strong>Deploy:</strong> <code>AWS / GCP</code> (multi-region: frankfurt, zagreb, milano).
+      </p>
+    </div>
+    <p><strong>Strategija:</strong> Začni s Hrvaško in Avstrijo — najbližji trgi, regulatorno poznani. Ko deluješ v 2 državah, lahko prodaš platformo tudi nemškim podjetjem, ki želijo v CEE.</p>
+  </div>
+
+  <div class="card card-indigo">
+    <div class="card-header"><span class="card-num">#15</span><span class="card-title">AI GovTech — Platforma za slovensko javno upravo</span></div>
+    <div class="card-tags">
+      <span class="tag">GovTech / B2G SaaS</span><span class="tag tag-blue">🏔️ Državno financiranje možno</span><span class="tag">€€€€€</span>
+    </div>
+    <div class="problem-box">
+      <strong>Realen problem:</strong> Upravna enota prejme 5.000 vlog letno za gradbena dovoljenja, spremembo namembnosti in druge upravne akte. 30 % časa gre na usmerjanje vlog ("ta vloga spada na drugo okence"). Čakalna doba je povprečno <strong>45 dni</strong>. Strošek birokracije nosi davkoplačevalec, a tudi podjetje — vsak dan zamude pri gradbenem dovoljenju stane 500 €.
+    </div>
+    <div class="money-box">
+      💰 <strong>Koliko denarja rešiš:</strong> Ni direktno merljivo v €, ker gre za javni sektor. Ampak: državna pogodba za avtomatizacijo ene upravne enote: <strong>100.000–500.000 €</strong>. Nacionalna implementacija: 2M–10M €. In to ni teoretično — strateški cilji Nacionalnega programa AI 2030 vključujejo implementacijo AI v javni upravi.
+    </div>
+    <div class="solution-box">
+      <strong>Kako AI reši:</strong> AI klasifikacija vlog (NLP/BERT) — kam spada ta vloga, kateri dokumenti manjkajo. Generativni AI napiše osnutek odločbe na podlagi podobnih prejšnjih (obvezno človeški review). AI analiza pritožb — katere so utemeljene, katere ne, da se razbremeni upravni spor.
+    </div>
+    <div class="stack">
+      <div class="stack-title">🛠️ Tehnologije (Enterprise Stack)</div>
+      <p>
+        <strong>NLP:</strong> <code>BERT</code> / <code>RoBERTa</code> fine-tune na slovenskih upravnih besedilih. Lahko <code>sloberta</code> ali lasten model na SLAIF.<br>
+        <strong>RAG:</strong> <code>LlamaIndex</code> + <code>Weaviate</code> nad zakonodajo, pravilniki, prejšnjimi odločbami.<br>
+        <strong>Security:</strong> <strong>On-premise</strong> ali <code>SLAIF</code> — javni sektor ne sme v javni oblak s portala z osebnimi podatki.<br>
+        <strong>Frontend:</strong> <code>Next.js</code> (interna aplikacija za uradnike).<br>
+        <strong>Workflow:</strong> <code>Camunda</code> ali <code>Temporal</code> za upravne postopke.
+      </p>
+    </div>
+    <p><strong>Entry point:</strong> Enota, ne ministrstvo. Pojdi na lokalno upravno enoto s pilotom (1 mesec brezplačno). Pokaži skrajšanje časa obravnave za 20 %. Referenca v javnem sektorju je vredna zlata — od tam greš na ministrstva.</p>
+  </div>
+
+  <div class="card card-indigo">
+    <div class="card-header"><span class="card-num">#16</span><span class="card-title">AI Zdravstveni Asistent za zasebne klinike</span></div>
+    <div class="card-tags">
+      <span class="tag">Vertical B2B SaaS / API</span><span class="tag tag-blue">🏔️ NIJZ, ZZZS, GDPR</span><span class="tag">€€€€€</span>
+    </div>
+    <div class="problem-box">
+      <strong>Realen problem:</strong> Zasebna klinika s 5 specialisti (dermatologija, ortopedija). Vsak zdravnik porabi <strong>2 uri dnevno</strong> na administracijo: vnašanje izvidov v kartoteko, izpolnjevanje ZZZS obrazcev, e-recepti, napotnice, komunikacija s pacienti. 5 zdravnikov × 2 uri × 22 dni = <strong>220 ur/mesec</strong>. Po 40 €/uro je to 8.800 € mesečnega stroška v obliki neučinkovitosti in izgorelosti.
+    </div>
+    <div class="money-box">
+      💰 <strong>Koliko denarja rešiš:</strong> AI asistent skrajša administracijo s 2 ur na 30 minut dnevno. Prihranki: <strong>7.500 €/mesec</strong> za kliniko. Tvoja cena: 300–800 €/zdravnik/mesec = 1.500–4.000 €/mesec. ROI: pod 1 mesec.
+    </div>
+    <div class="solution-box">
+      <strong>Kako AI reši:</strong> Speech-to-text (Whisper) med pregledom — zdravnik govori, AI piše kartoteko. NLP ekstrahira diagnoze, simptome, predpisane terapije. Avtomatsko izpolni ZZZS obrazce in e-recepte. Pacient prejme avtomatske navodila po pregledu (SMS/email).
+    </div>
+    <div class="stack">
+      <div class="stack-title">🛠️ Tehnologije (Enterprise Stack)</div>
+      <p>
+        <strong>Speech:</strong> <code>OpenAI Whisper</code> (fine-tune na medicinsko slovensko terminologijo) ali <code>AWS Transcribe Medical</code> (če/ ko pride v SLO).<br>
+        <strong>NLP:</strong> <code>spaCy</code> ali <code>HuggingFace</code> modeli za ekstrakcijo entitet (NER) — simptomi, diagnoze (ICD-10), zdravila.<br>
+        <strong>Integracija:</strong> <code>HL7 FHIR</code> ali lokalni <code>eZdravje</code> API (ko bo dostopen za zasebne ponudnike).<br>
+        <strong>Security:</strong> <strong>On-premise</strong> ali <code>SLAIF</code>. Podatki o zdravju ne smejo v javni API. Šifriranje, audit logi, GDPR by design.<br>
+        <strong>Frontend:</strong> <code>Next.js</code> (vzporedno z zdravnikovim PACS/EHR sistemom).
+      </p>
+    </div>
+    <p><strong>Regulatorno:</strong> To je najzahtevnejši del. Predhodni pogovor z NIJZ in ZZZS je nujen. Začni s ".ai scribe" — orodjem za diktiranje, ne za direktno integracijo z državnimi sistemi. Sčasoma dodaj povezljivost.</p>
+  </div>
+
+  <div class="card card-indigo">
+    <div class="card-header"><span class="card-num">#17</span><span class="card-title">AI Platforma za slovenski jezik &amp; kulturno dediščino (LLM)</span></div>
+    <div class="card-tags">
+      <span class="tag">API / SaaS / B2G</span><span class="tag tag-blue">🏔️ Deep Blue Ocean — pionirska priložnost</span><span class="tag">€€€€€€</span>
+    </div>
+    <div class="problem-box">
+      <strong>Realen problem:</strong> GPT-4 razume slovenščino na približno 80–85 % — dovolj za splošni pogovor, premalo za pravo, medicino, znanost in javno upravo. Kulturna dediščina (zgodovinski časopisi, rokopisi, arhivski zapisi) ni digitalizirana in dostopna. Podjetja, ki želijo graditi SLO-native AI produkte, nimajo dostopa do kakovostnega jezikovnega modela.
+    </div>
+    <div class="money-box">
+      💰 <strong>Koliko denarja rešiš:</strong> Nacionalni LLM je infrastruktura, ne produkt. Vrednost je v <strong>API licencah</strong> in <strong>B2G pogodbah</strong>. Vsako slovensko podjetje, ki gradi AI chatbot, pravni asistent ali zdravstveno orodje, potrebuje ta model. Če je cena API-ja 0,002 €/token in imaš 50 podjetij s povprečno 10M tokenov/mesec = <strong>1M €/leto</strong>. Dolgoročno: monopolni nacionalni jezikovni steber.
+    </div>
+    <div class="solution-box">
+      <strong>Kako AI reši:</strong> Fine-tune odprtokodnega modela (<code>Mistral 7B/8×22B</code> ali <code>Llama 3</code>) na obsežnem slovenskem korpusu: Wikipedija, CC-BY časopisje, pravna besedila, medicinski izvidi, eAsistent vsebina. Alignment z RLHF (slovenski feedback). Deploy na <code>SLAIF</code> / <code>EuroHPC</code> za nizko latenco in visoko varnost.
+    </div>
+    <div class="stack">
+      <div class="stack-title">🛠️ Tehnologije (Enterprise + Research Stack)</div>
+      <p>
+        <strong>Base model:</strong> <code>Mistral 8x22B</code> ali <code>Llama 3.1 405B</code> (odprtokodno, ni licenčnih težav).<br>
+        <strong>Fine-tune:</strong> <code>QLoRA</code> ali <code>Axolotl</code> za učinkovit fine-tune na 1–8× A100/H100 (dostop prek SLAIF).<br>
+        <strong>Data pipeline:</strong> <code>Apache Spark</code> za čiščenje korpusov; <code>LangChain</code> za RAG nad kulturnimi zbirkami.<br>
+        <strong>Deploy:</strong> <code>vLLM</code> ali <code>TGI (Text Generation Inference)</code> za visoko propustnost API-jev na SLAIF/EuroHPC.<br>
+        <strong>API:</strong> <code>FastAPI</code> gateway z rate limitingom in API ključi za B2B dostop.
+      </p>
+    </div>
+    <p><strong>Financiranje:</strong> To ne more biti čisti produkt — potrebuješ ARRS, EU (Horizon), JAPTI ali Ministrstvo za kulturo. Zgradi konsorcij: fakulteta (Jezikoslovje + FRI), arhiv, gospodarska zbornica in 2–3 podjetja, ki bodo uporabniki API-ja.</p>
+  </div>
+
+  <div class="card card-indigo">
+    <div class="card-header"><span class="card-num">#18</span><span class="card-title">AI Fintech Svetovalec za MSP (Cash Flow &amp; Forecasting)</span></div>
+    <div class="card-tags">
+      <span class="tag">Fintech / B2B SaaS</span><span class="tag tag-blue">🏔️ Integracija z Minimax, Pantheon</span><span class="tag">€€€€€</span>
+    </div>
+    <div class="problem-box">
+      <strong>Realen problem:</strong> 60 % MSP v Sloveniji nima finančnega direktorja. Direktor je pogosto tudi prodajalec in računovodja. Ne razume denarnega toka: kdaj pridejo terjatve, kdaj zapadejo obveznosti, koliko gotovine imajo čez 30 dni. Povprečna terjatev v SLO: <strong>45 dni</strong>. 15 % podjetij ima občasne likvidnostne težave. Rezultat: zamujeni dobaviteljski plačila, izgubljeni popusti, krediti po visokih obrestih.
+    </div>
+    <div class="money-box">
+      💰 <strong>Koliko denarja rešiš:</strong> Če podjetje zaradi slabe napovedi zamudi znižanje obresti na kreditu ali izgubi 2 % popusta pri dobavitelju, je to <strong>2.000–10.000 €/leto</strong> nepotrebnih stroškov. AI napoved cash flowa zmanjša presenečenja.
+    </div>
+    <div class="solution-box">
+      <strong>Kako AI reši:</strong> AI povezan z bančnimi računi (ko bo Open Banking / PSD2 polno deloval v SLO) in računovodskim sistemom (Minimax, Pantheon via API ali CSV). Napove cash flow za 30/60/90 dni. Opozori: "Čez 14 dni boste imeli -15.000 € — pokličite terjatve X, Y, Z." Predlaga ukrepe: preoblikovanje kratkoročnega kredita, optimizacija DDV plačil.
+    </div>
+    <div class="stack">
+      <div class="stack-title">🛠️ Tehnologije (Enterprise Stack)</div>
+      <p>
+        <strong>Data:</strong> <code>Minimax API</code> / <code>Pantheon API</code> (če obstaja) ali <code>CSV import</code> iz eRačunov.<br>
+        <strong>Banking:</strong> <code>PSD2 / Open Banking API</code> (ko ga slovenske banke odprejo); do takrat ročni CSV import TRR prometa.<br>
+        <strong>ML forecasting:</strong> <code>Prophet</code> (Meta) ali <code>LightGBM</code> za časovne vrste — napovedovanje prihodkov in odhodkov.<br>
+        <strong>Dashboard:</strong> <code>Next.js</code> + <code>Recharts/D3</code> za vizualizacijo cash flowa.<br>
+        <strong>Alerts:</strong> <code>n8n</code> ali <code>Temporal</code> za opozorila (email, Slack, SMS).<br>
+        <strong>Security:</strong> Bankovni podatki = najvišja raven varnosti. Šifriranje, 2FA, audit.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- STACK -->
+<section id="stack">
+  <h2>🛠️ The Builder's Stack — katere tehnologije dejansko uporabiš</h2>
+  <p class="section-lead">Ni treba izumljati kolesa. Tu je razdelitev stacka po nivojih, ki deluje v Sloveniji leta 2026.</p>
+
+  <h3>Tier 1 Stack (Solo / Vibecoder) — MVP v 1–4 tednih</h3>
+  <table>
+    <tbody><tr><th>Plast</th><th>Orodje</th><th>Zakaj</th></tr>
+    <tr><td>Frontend / UI</td><td><code>Next.js</code> + <code>Tailwind</code></td><td>Enostavno, SEO prijazno, deploy na Vercel v 2 minutah.</td></tr>
+    <tr><td>Backend / DB / Auth</td><td><code>Supabase</code></td><td>PostgreSQL, auth, storage, realtime — vse v enem, brezplačno za začetek.</td></tr>
+    <tr><td>AI možgani</td><td><code>OpenAI GPT-4o API</code></td><td>Dobro razume slovenščino, ni treba fine-tunati za MVP.</td></tr>
+    <tr><td>RAG / Pomnilnik</td><td><code>Pinecone</code> ali <code>Supabase pgvector</code></td><td>Dodaj znanje o podjetju (cennik, pogosta vprašanja).</td></tr>
+    <tr><td>Avtomatizacija</td><td><code>n8n</code> ali <code>Make.com</code></td><td>Vizualno povežeš email, koledar, Slack, SMS brez kode.</td></tr>
+    <tr><td>Plačila</td><td><code>Stripe</code></td><td>Naročnine, invoices, VAT-ready za SLO (z davčno številko).</td></tr>
+    <tr><td>Deploy</td><td><code>Vercel</code> (frontend) + <code>Supabase</code> (backend)</td><td>Brez stroškov infrastrukture do 100 uporabnikov.</td></tr>
+  </tbody></table>
+
+  <h3>Tier 2 Stack (Ekipa / Vertical SaaS) — 3–6 mesecev</h3>
+  <table>
+    <tbody><tr><th>Plast</th><th>Orodje</th><th>Zakaj</th></tr>
+    <tr><td>Frontend</td><td><code>Next.js</code> + <code>shadcn/ui</code></td><td>Produkcijska kvaliteta, komponente pripravljene.</td></tr>
+    <tr><td>Backend API</td><td><code>FastAPI</code> (Python) ali <code>NestJS</code></td><td>FastAPI je standard za AI servise; NestJS za kompleksne B2B logike.</td></tr>
+    <tr><td>AI / RAG</td><td><code>LangChain</code> ali <code>LlamaIndex</code> + <code>Weaviate/Pinecone</code></td><td>Kompleksni RAG, agenti, function calling, integracija z več viri.</td></tr>
+    <tr><td>Workflow</td><td><code>Temporal.io</code> ali <code>n8n</code> (self-hosted)</td><td>Dolgotrajni procesi (npr. prijava na razpis traja 3 mesece).</td></tr>
+    <tr><td>Baza</td><td><code>PostgreSQL</code> (Supabase / AWS RDS)</td><td>Zanesljivost, transakcije, vektorji s <code>pgvector</code>.</td></tr>
+    <tr><td>File storage</td><td><code>AWS S3</code> ali <code>Supabase Storage</code></td><td>Računi, pogodbe, PDFji.</td></tr>
+    <tr><td>Deploy</td><td><code>Docker</code> + <code>AWS/GCP</code> ali <code>Railway/Render</code></td><td>Sama aplikacija; če je panožno občutljiva (zdravstvo), uporabi <code>private cloud</code>.</td></tr>
+  </tbody></table>
+
+  <h3>Tier 3–4 Stack (Enterprise / GovTech / SLAIF)</h3>
+  <table>
+    <tbody><tr><th>Plast</th><th>Orodje</th><th>Zakaj</th></tr>
+    <tr><td>Frontend</td><td><code>React</code> + <code>Next.js</code> (micro-frontends)</td><td>Skalabilnost, ločene ekipe.</td></tr>
+    <tr><td>Backend</td><td><code>FastAPI / NestJS</code> + <code>Kubernetes</code></td><td>Microservices, auto-scaling, high availability.</td></tr>
+    <tr><td>AI / ML</td><td><code>PyTorch / TensorFlow</code> + <code>Kubeflow / MLflow</code></td><td>Lastni modeli, MLOps, experiment tracking.</td></tr>
+    <tr><td>LLM deploy</td><td><code>vLLM</code> ali <code>TGI</code> na <code>SLAIF / EuroHPC</code></td><td>Lastni LLM potrebuje HPC infrastrukturo — ne moreš tega teči na Vercelu.</td></tr>
+    <tr><td>Security</td><td><code>On-premise</code> ali <code>Private Cloud</code> + <code>HashiCorp Vault</code></td><td>Zdravstveni in javni podatki morajo ostati v SLO.</td></tr>
+    <tr><td>Data</td><td><code>PostgreSQL</code> + <code>ClickHouse/TimescaleDB</code> + <code>Redis</code></td><td>Transakcije, analitika, cache — ločene baze za ločene potrebe.</td></tr>
+    <tr><td>Integracije</td><td><code>Apache Kafka</code> ali <code>RabbitMQ</code></td><td>Event-driven arhitektura za povezavo s starimi sistemi (ERP, ZZZS).</td></tr>
+  </tbody></table>
+
+  <h3>Splošni nasveti za stack v Sloveniji</h3>
+  <ul>
+    <li><strong>Začni s preprostim.</strong> 90 % slovenskih podjetij ne potrebuje Kubernetes. Potrebujejo rešitev, ki deluje jutri.</li>
+    <li><strong>Uporabljaj AI API-je.</strong> OpenAI je v SLO legalen in dostopen. Ne gradite lastnega LLM-ja, če to ni vaša osnovna vrednost.</li>
+    <li><strong>RAG &gt; Fine-tune za 95 % primerov.</strong> Namesto da fine-tunaš model, v Pinecone daj cennik, pogodbe in navodila. Ceneje, hitreje, enostavneje za vzdrževanje.</li>
+    <li><strong>Nocode je validacija, ne produkcija.</strong> Make.com je super za MVP in avtomatizacijo. Ko imaš 50+ uporabnikov, prepiši kritične poti v kodo.</li>
+    <li><strong>Stripe je najboljši prijatelj.</strong> Če ne moreš zaračunati v 2 minutah, nimaš produkta. Stripe podpira SLO davčne stopnje (22 %, 9,5 %).</li>
+  </ul>
+</section>
+
+<!-- ROADMAP -->
+<section id="roadmap">
+  <h2>🗺️ 0-to-1 Roadmap: od ideje do prvih 10.000 € MRR</h2>
+
+  <h3>Faza 1: Validacija (0–30 dni)</h3>
+  <ul>
+    <li><strong>Izberi enega problema</strong> iz Tier 1, ki ga razumeš. Če si delal v gostinstvu, izberi turistični chatbot. Če si računovodja, izberi FURS avtomatizacijo.</li>
+    <li><strong>Pojdi k 10 potencialnim strankam.</strong> Ne pošiljaj emailov. Pojdi osebno. Povej: "Delam orodje, ki vam bo prihranilo X ur na teden. Bi vam pokazal?"</li>
+    <li><strong>Zgradi prototip v nocode.</strong> Make + GPT + Google Sheets. Cilj: pokaži vrednost, ne popoln UI.</li>
+    <li><strong>Zberi 3 plačljive stranke.</strong> Cena ni pomembna — 10 €/mesec je dovolj. Dokaz, da plačujejo, je edini validacijski metrik.</li>
+  </ul>
+
+  <h3>Faza 2: MVP &amp; Prvi MRR (30–90 dni)</h3>
+  <ul>
+    <li><strong>Zamenjaj nocode z kodom.</strong> Next.js + Supabase + GPT API. Enostavno, a z lastno IP.</li>
+    <li><strong>Dodaj avtomatizacijo.</strong> Kar si ročno kopiral v Make, avtomatiziraj v n8n ali backend logiki.</li>
+    <li><strong>Postavi ceno na 49–149 €/mesec.</strong> Preprosti produkti se prodajajo sami, če je cena "manjša kot kosilo za ekipo."</li>
+    <li><strong>Cilj: 20 strank = 2.000–5.000 € MRR.</strong> To je dovolj, da preidete na polni delovni čas ali najamete prvega sodelavca.</li>
+  </ul>
+
+  <h3>Faza 3: Skaliranje &amp; CEE (90–365 dni)</h3>
+  <ul>
+    <li><strong>Dodaj integracije.</strong> FURS, Minimax, Booking.com, Shopify — to je ovira za prehod, ne funkcija.</li>
+    <li><strong>Zgradi referenčne zgodbe.</strong> Slovenski B2B trg teče na zaupanju. Video pričevanje direktorja podjetja je boljši od 10 landing pages.</li>
+    <li><strong>Prevedi v Hrvaščino in Nemščino.</strong> CEE–DACH koridor je ključen. Hrvaška ima podobne probleme (digitalni zaostanek MSP), Avstrija pa ima denar.</li>
+    <li><strong>Cilj: 10.000 € MRR.</strong> To je psihološka meja, ki pomeni: "To je resni podatek, ne projekt."</li>
+  </ul>
+
+  <h3>Faza 4: Enterprise / GovTech (12–36 mesecev)</h3>
+  <ul>
+    <li><strong>Zaposli panožnega strokovnjaka.</strong> Če greš v zdravstvo, potrebuješ zdravnika v ekipi. Če v gradbeništvo — gradbenega inženirja.</li>
+    <li><strong>Pripravi se na varnostne preglede.</strong> GovTech in zdravstvo zahtevata ISO 27001, penetration teste in on-premise možnost.</li>
+    <li><strong>Uporabi SLAIF in EU razpise.</strong> Ne financiraj vsega sam. ARRS, JAPTI, Horizon Europe in EuroHPC so tu, da ti pomagajo pri R&amp;D.</li>
+    <li><strong>Cilj: 100.000+ € ARR in prva zaposlitev #5.</strong></li>
+  </ul>
+</section>
+
+<!-- ZAKLJUCEK -->
+<section id="zakljucek">
+  <h2>🎯 Zaključek: Zakaj je zdaj pravi čas?</h2>
+
+  <p>Slovenija ni le majhen trg — je <strong>idealen laboratorij</strong>. Majhnost pomeni hitro validacijo. Če tvoj AI chatbot deluje za 10 salonov v Ljubljani, veš, da bo deloval za 1.000 v Zagrebu in Milanu. Če tvoja ponudbena aplikacija reši problem vodovodarju v Kranju, rešuje ga tudi vodovodarju v Salzburgu.</p>
+
+  <p>Državni kontekst je naklonjen:</p>
+  <ul>
+    <li><strong>17,4M €</strong> nepovratnih sredstev za digitalno transformacijo pomeni, da imajo podjetja denar za nakup tvojega orodja.</li>
+    <li><strong>SLAIF</strong> in EuroHPC pomenita, da imaš dostop do svetovne infrastrukture za gradnjo lastnih modelov.</li>
+    <li><strong>Nacionalni program AI 2030</strong> je potrjen — AI v javni upravi, zdravstvu in industriji ni več "mogoče", ampak "kdaj."</li>
+    <li><strong>EU AI Act</strong> je priložnost: podjetja, ki ponujajo compliant orodja, bodo imele konkurenčno prednost.</li>
+  </ul>
+
+  <p>Ne čakaj na popoln produkt. Zgradi MVP v 2 tednih, pojdi do 3 strank, zaračunaj in iteriraj. Slovenski trg te nagradi z zaupanjem, če si lokalen, odziven in razumeš njihov problem.</p>
+
+  <div class="cta">
+    <h3>Zacni graditi danes.</h3>
+    <p>Blue Ocean ne čaka. 9 AI podjetij v Sloveniji pomeni, da si lahko deseto — ali pa prvo v svoji niši. Izberi problem, odpri IDE in napiši prvi prompt.</p>
+  </div>
+
+  <p style="font-size:.85rem; color:#64748b; margin-top:2rem;">
+    <strong>Virji in reference:</strong> Podatki temeljijo na javno dostopnih analizah: Strategija digitalne transformacije Slovenije, EU Digital Economy and Society Index (DESI), Nacionalni program AI 2030 (osnutek, nov. 2025), SPIRIT Slovenija, Javni razpis P4D, podatki o SLAIF (EuroHPC AI Factory), poročila OZS in GZS. Podatki o številu AI podjetij: medijska poročila, november 2025.
+  </p>
+</section>
+
+</main>
+
+</body></html>
