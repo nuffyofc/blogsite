@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>100 Must-Have GitHub Repos (2025–2026): AI Agents, Local LLMs, TTS, Image/Video Gen & More</title>
+<style>
+  :root {
+    --emerald: #10b981; --emerald-bg: #ecfdf5; --emerald-dark: #065f46;
+    --amber: #f59e0b; --amber-bg: #fffbeb; --amber-dark: #92400e;
+    --indigo: #6366f1; --indigo-bg: #eef2ff; --indigo-dark: #312e81;
+    --slate: #64748b; --slate-light: #f8fafc; --slate-dark: #0f172a;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; color: var(--slate-dark); line-height: 1.65; background: #fff; }
+  .container { max-width: 780px; margin: 0 auto; padding: 0 1.25rem; }
+
+  .hero { background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #312e81 100%); color: #fff; padding: 4rem 1.25rem 3rem; text-align: center; position: relative; overflow: hidden; }
+  .hero::after { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); opacity: .6; pointer-events: none; }
+  .hero h1 { font-size: clamp(1.6rem, 5vw, 2.4rem); font-weight: 800; margin: 0 0 .75rem; line-height: 1.15; position: relative; z-index: 1; }
+  .hero p { font-size: 1.05rem; color: #cbd5e1; max-width: 640px; margin: 0 auto 1.5rem; position: relative; z-index: 1; }
+  .hero .meta { font-size: .82rem; color: #94a3b8; position: relative; z-index: 1; }
+  .badge { display: inline-block; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; padding: .35rem .85rem; border-radius: 999px; margin-bottom: 1rem; }
+  .badge-green { background: var(--emerald); color: #fff; }
+  .badge-amber { background: var(--amber); color: #fff; }
+  .badge-indigo { background: var(--indigo); color: #fff; }
+
+  h2 { font-size: 1.45rem; font-weight: 800; margin: 2.5rem 0 1rem; color: var(--slate-dark); display: flex; align-items: center; gap: .6rem; }
+  h3 { font-size: 1.15rem; font-weight: 700; margin: 1.75rem 0 .6rem; color: var(--slate-dark); }
+  p, ul, ol { margin: 0 0 1rem; }
+  ul { padding-left: 1.25rem; }
+  li { margin-bottom: .5rem; }
+  a { color: #2563eb; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .repo-list { list-style: none; padding: 0; margin: 0 0 1rem; }
+  .repo-list li { background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; padding: .9rem 1.1rem; margin-bottom: .75rem; }
+  .repo-list .name { font-weight: 700; color: var(--slate-dark); }
+  .repo-list .stars { font-size: .78rem; color: var(--slate); font-weight: 600; margin-left: .4rem; }
+  .repo-list .desc { color: #475569; font-size: .93rem; margin-top: .3rem; }
+  .repo-list code { background: #f1f5f9; padding: .1rem .4rem; border-radius: 5px; font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace; font-size: .82rem; color: #334155; }
+
+  .toc { background: var(--slate-light); border-radius: 12px; padding: 1.25rem; margin: 2rem 0; border: 1px solid #e2e8f0; }
+  .toc h4 { margin: 0 0 .75rem; font-size: .9rem; text-transform: uppercase; letter-spacing: .04em; color: #64748b; }
+  .toc ul { list-style: none; padding: 0; margin: 0; columns: 2; column-gap: 1.5rem; }
+  .toc li { margin: .35rem 0; font-size: .9rem; break-inside: avoid; }
+  .toc a { color: #334155; }
+  .toc a:hover { color: #2563eb; }
+
+  .section-lead { font-size: 1.05rem; color: #475569; margin-bottom: 1.25rem; }
+
+  table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: .9rem; }
+  th, td { text-align: left; padding: .55rem .65rem; border-bottom: 1px solid #e2e8f0; }
+  th { font-weight: 700; color: #334155; background: #f8fafc; }
+
+  .tip { background: var(--indigo-bg); border: 1px solid #c7d2fe; border-radius: 10px; padding: .9rem 1.1rem; margin: 1.25rem 0; color: var(--indigo-dark); font-size: .93rem; }
+
+  .cta { background: linear-gradient(135deg, #065f46 0%, #047857 100%); color: #fff; border-radius: 14px; padding: 2rem 1.5rem; text-align: center; margin: 2.5rem 0; }
+  .cta h3 { color: #fff; margin: 0 0 .5rem; font-size: 1.25rem; }
+  .cta p { color: #d1fae5; margin: 0; font-size: .95rem; }
+
+  @media (max-width: 600px) { .hero { padding: 2.5rem 1rem 2rem; } .toc ul { columns: 1; } }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <span class="badge badge-indigo">Curated Roundup 2025/26</span>
+    <h1>100 Must-Have GitHub Repos<br>for 2025–2026</h1>
+    <p>AI agents, local LLMs, image &amp; video generation, TTS, productivity, RAG, coding agents, scraping and self-hosted apps — the no-fluff list of what's actually worth installing right now.</p>
+    <div class="meta">19. June 2026 • Reading time: 14 min • Sources: ByteByteGo, OpenDataScience, Firecrawl, Fungies, BentoML, LocalAIMaster, GitHub Topics</div>
+  </div>
+</header>
+
+<main class="container">
+
+<nav class="toc">
+  <h4>Table of contents</h4>
+  <ul>
+    <li><a href="#agents">1. AI Agents &amp; Automation</a></li>
+    <li><a href="#local">2. Local LLMs &amp; Ollama</a></li>
+    <li><a href="#image">3. Image Generation</a></li>
+    <li><a href="#video">4. Video Generation</a></li>
+    <li><a href="#tts">5. TTS &amp; Voice</a></li>
+    <li><a href="#productivity">6. Productivity &amp; Personal Tools</a></li>
+    <li><a href="#rag">7. RAG, Search &amp; Knowledge</a></li>
+    <li><a href="#coding">8. Coding Agents &amp; Dev Tools</a></li>
+    <li><a href="#scraping">9. Scraping &amp; Web Data</a></li>
+    <li><a href="#selfhosted">10. Self-Hosted Apps &amp; Media</a></li>
+    <li><a href="#gems">11. Research, Music &amp; Hidden Gems</a></li>
+    <li><a href="#map">Quick category map</a></li>
+  </ul>
+</nav>
+
+<section id="intro">
+  <p class="section-lead">After digging through ByteByteGo roundups, GitHub trending pages, and a dozen "awesome-AI" lists, here's the curated set of 100 repositories that actually matter in 2025–2026 — not demo-ware, not abandoned side projects, but tools people are shipping production work with.</p>
+</section>
+
+<section id="agents">
+  <h2>🤖 1. AI Agents &amp; Automation</h2>
+  <p class="section-lead">The category that exploded fastest this cycle. Visual builders, autonomous coding agents, and crews of specialized bots now make up half of the top trending repos on GitHub.</p>
+  <ul class="repo-list">
+    <li><span class="name">OpenClaw</span><span class="stars">★ 210k+</span><div class="desc">The breakout star of 2026, created by PSPDFKit founder Peter Steinberger — surged from 9,000 to over 60,000 stars in days. <code>github.com/OpenClaw/OpenClaw</code></div></li>
+    <li><span class="name">awesome-ai-agents-2026</span><div class="desc">177 copy-paste SOUL.md configs for OpenClaw, covering workflow automation, web scraping, and proactive scheduling. <code>github.com/caramaschiHG/awesome-ai-agents-2026</code></div></li>
+    <li><span class="name">n8n</span><div class="desc">Open-source workflow automation with a visual no-code interface, native AI nodes, and 400+ integrations. Self-hosted, fair-code licensed. <code>github.com/n8n-io/n8n</code></div></li>
+    <li><span class="name">CrewAI</span><div class="desc">Treats agents as crew members with defined roles and goals. Production-ready since late 2025 with enterprise observability and scheduling, model-agnostic across GPT, Claude, Gemini and local Llama via Ollama. <code>github.com/crewAIInc/crewAI</code></div></li>
+    <li><span class="name">AutoGPT</span><div class="desc">The original autonomous agent — chains LLM calls to complete long-horizon tasks without hand-holding. Still massively starred. <code>github.com/Significant-Gravitas/AutoGPT</code></div></li>
+    <li><span class="name">Browser Use</span><span class="stars">★ 97.7k</span><div class="desc">Agent and CLI for reliable website automation — form filling, data retrieval, custom tools. <code>github.com/browser-use/browser-use</code></div></li>
+    <li><span class="name">Daytona</span><span class="stars">★ 72.5k</span><div class="desc">Secure, elastic sandbox infrastructure for AI-generated code, controllable via SDK, API, and CLI. <code>github.com/daytonaio/daytona</code></div></li>
+    <li><span class="name">DeerFlow (ByteDance)</span><div class="desc">Ground-up rewrite for long-horizon agents — sub-agents, memory, sandboxes, skills, context engineering. Hit #1 on GitHub Trending in Feb 2026. <code>github.com/bytedance/deer-flow</code></div></li>
+    <li><span class="name">MetaGPT</span><div class="desc">Multi-agent framework where agents take on roles (CEO, engineer, PM) to collaborate on software via SOPs. <code>github.com/geekan/MetaGPT</code></div></li>
+    <li><span class="name">AutoGen (Microsoft)</span><div class="desc">Framework for conversational multi-agent workflows where agents talk to each other to solve complex tasks. <code>github.com/microsoft/autogen</code></div></li>
+    <li><span class="name">Open Interpreter</span><div class="desc">Gives an LLM access to your terminal to write and execute code locally — like a Code Interpreter with no upload limits, supporting OpenAI, Anthropic, and Ollama models. <code>github.com/OpenInterpreter/open-interpreter</code></div></li>
+    <li><span class="name">SWE-agent</span><div class="desc">Princeton's agent that autonomously resolves GitHub issues and bugs — one of the best open coding agents around. <code>github.com/princeton-nlp/SWE-agent</code></div></li>
+    <li><span class="name">Mastra</span><div class="desc">TypeScript-native agent framework, the go-to for teams building AI products in JS/TS with type safety. <code>github.com/mastra-ai/mastra</code></div></li>
+    <li><span class="name">Langflow</span><span class="stars">★ 146k</span><div class="desc">Visual builder for prototyping and deploying agents without writing extensive code. <code>github.com/logspace-ai/langflow</code></div></li>
+    <li><span class="name">Flowise</span><div class="desc">Drag-and-drop UI for LangChain flows — easy to self-host, great for RAG pipelines. <code>github.com/FlowiseAI/Flowise</code></div></li>
+    <li><span class="name">Dify</span><span class="stars">★ 136k</span><div class="desc">Visual workflow builder for AI automations wired into existing tools, with a strong self-hosted story. <code>github.com/langgenius/dify</code></div></li>
+  </ul>
+</section>
+
+<section id="local">
+  <h2>🖥️ 2. Local LLMs &amp; Ollama Ecosystem</h2>
+  <p class="section-lead">Local inference matured into a full ecosystem — runtimes, serving engines, and polished desktop clients that rival cloud chat products.</p>
+  <ul class="repo-list">
+    <li><span class="name">Ollama</span><span class="stars">★ 165k+</span><div class="desc">Did for local LLMs what Docker did for containers — one command to pull and run Llama, DeepSeek, Mistral, Gemma and more. <code>github.com/ollama/ollama</code></div></li>
+    <li><span class="name">Open WebUI</span><div class="desc">Ollama's perfect companion — the backbone of the local AI movement, a fully self-hosted chat UI. <code>github.com/open-webui/open-webui</code></div></li>
+    <li><span class="name">llama.cpp</span><div class="desc">Run LLaMA and other LLMs on CPU/GPU with blazing efficiency — the engine under many local AI tools. <code>github.com/ggerganov/llama.cpp</code></div></li>
+    <li><span class="name">vLLM</span><div class="desc">High-throughput serving engine with PagedAttention for production-grade local inference. <code>github.com/vllm-project/vllm</code></div></li>
+    <li><span class="name">DeepSeek-V3</span><div class="desc">Proof open models can compete with proprietary ones — free for commercial use, fine-tunable, runs locally via Ollama. <code>github.com/deepseek-ai/DeepSeek-V3</code></div></li>
+    <li><span class="name">LocalAI</span><div class="desc">Drop-in OpenAI API replacement for self-hosted models — run any GGUF model behind an OpenAI-compatible REST API. <code>github.com/mudler/LocalAI</code></div></li>
+    <li><span class="name">LM Studio</span><div class="desc">Desktop app + API for running local models easily — the best GUI experience for GGUF/Ollama models. <code>github.com/lmstudio-ai</code></div></li>
+    <li><span class="name">Jan</span><div class="desc">Privacy-focused, fully offline ChatGPT alternative that runs entirely on-device. <code>github.com/janhq/jan</code></div></li>
+    <li><span class="name">GPT4All</span><div class="desc">Run LLMs 100% locally with a simple desktop app — no GPU required. <code>github.com/nomic-ai/gpt4all</code></div></li>
+    <li><span class="name">Yao Agents</span><div class="desc">Local-first execution platform with Docker sandbox isolation, BYOK config, MCP support, and multi-platform messaging (WeChat, Feishu, Telegram, Discord). <code>github.com/YaoApp/yao</code></div></li>
+  </ul>
+</section>
+
+<section id="image">
+  <h2>🎨 3. Image Generation</h2>
+  <ul class="repo-list">
+    <li><span class="name">ComfyUI</span><div class="desc">Node-based interface giving advanced, fully customizable control over diffusion image-generation workflows. <code>github.com/comfyanonymous/ComfyUI</code></div></li>
+    <li><span class="name">AUTOMATIC1111 (Stable Diffusion WebUI)</span><div class="desc">The simplicity pick — install, load a model, start generating in minutes. <code>github.com/AUTOMATIC1111/stable-diffusion-webui</code></div></li>
+    <li><span class="name">InvokeAI</span><div class="desc">Professional creative tool for Stable Diffusion with a polished canvas UI and model management. <code>github.com/invoke-ai/InvokeAI</code></div></li>
+    <li><span class="name">Fooocus</span><div class="desc">The simplest possible SDXL interface — focus on prompting, not configuration. <code>github.com/lllyasviel/Fooocus</code></div></li>
+    <li><span class="name">FLUX.1 (Black Forest Labs)</span><div class="desc">The hottest open image model of 2025–2026 — state-of-the-art quality, fully open weights. <code>github.com/black-forest-labs/flux</code></div></li>
+    <li><span class="name">Real-ESRGAN</span><div class="desc">AI-powered image upscaling and restoration — sharpens any low-res image. <code>github.com/xinntao/Real-ESRGAN</code></div></li>
+    <li><span class="name">Open-Generative-AI</span><div class="desc">Open alternative to commercial AI image/video platforms with 200+ models (Flux, Kling-style, Veo-style), MIT licensed. <code>github.com/anil-matcha/open-generative-ai</code></div></li>
+    <li><span class="name">Stable Diffusion XL Turbo</span><div class="desc">Near real-time generation from SDXL — 1–4 steps, near-instant results.</div></li>
+  </ul>
+</section>
+
+<section id="video">
+  <h2>🎬 4. Video Generation</h2>
+  <ul class="repo-list">
+    <li><span class="name">Open-Sora 2.0</span><div class="desc">Open-source video generation now competing with commercial alternatives like Runway Gen-4.5 and Kling 3.0. <code>github.com/hpcaitech/Open-Sora</code></div></li>
+    <li><span class="name">HunyuanVideo (Tencent)</span><span class="stars">★ 11.9k</span><div class="desc">One of the stronger open video generators, handling 720p and 1080p. <code>github.com/Tencent/HunyuanVideo</code></div></li>
+    <li><span class="name">CogVideoX-1.5</span><div class="desc">Apache 2.0, loads natively via Hugging Face Diffusers — smooth transitions, strong prompt following. <code>github.com/THUDM/CogVideo</code></div></li>
+    <li><span class="name">Wan2.1</span><span class="stars">★ 13.2k</span><div class="desc">Open, large-scale video generative models. <code>github.com/Wan-Video/Wan2.1</code></div></li>
+    <li><span class="name">SadTalker / LivePortrait</span><span class="stars">★ 18.4k</span><div class="desc">Brings portraits to life with face animation and video generation. <code>github.com/OpenTalker/SadTalker</code></div></li>
+    <li><span class="name">Digital Human / AI Avatar Toolkit</span><span class="stars">★ 12.7k</span><div class="desc">Open-source digital human toolkit for offline avatar generation and cloning. <code>github.com/digital-avatar</code></div></li>
+    <li><span class="name">Deforum Stable Diffusion</span><div class="desc">The top choice for AI music videos and prompt-driven animation. <code>github.com/deforum-art/deforum-stable-diffusion</code></div></li>
+    <li><span class="name">Text-To-Video-AI</span><div class="desc">Topic in, script + images + narration out, using OpenAI and Pexels APIs across multiple languages. <code>github.com/SamurAIGPT/Text-To-Video-AI</code></div></li>
+  </ul>
+</section>
+
+<section id="tts">
+  <h2>🗣️ 5. Text-to-Speech &amp; Voice</h2>
+  <ul class="repo-list">
+    <li><span class="name">F5-TTS</span><div class="desc">Open TTS that rivals commercial APIs on zero-shot voice cloning, built on flow matching with a DiT transformer — clones a voice from 5–15 seconds of audio. <code>github.com/SWivid/F5-TTS</code></div></li>
+    <li><span class="name">Fish Speech (S2)</span><div class="desc">SOTA voice cloning with cross-lingual generalization across 80+ languages without retraining. <code>github.com/fishaudio/fish-speech</code></div></li>
+    <li><span class="name">Coqui TTS</span><div class="desc">Robust, well-documented open TTS toolkit supporting dozens of voices and languages. <code>github.com/coqui-ai/TTS</code></div></li>
+    <li><span class="name">Tortoise TTS</span><div class="desc">High-quality, expressive multi-voice TTS — slower, but stunning for audiobooks and narration. <code>github.com/neonbjb/tortoise-tts</code></div></li>
+    <li><span class="name">Suno Bark</span><div class="desc">Expressive speech and sound-effects model — one of the truly free open audio generation options. <code>github.com/suno-ai/bark</code></div></li>
+    <li><span class="name">WhisperX</span><div class="desc">Faster-than-real-time speech-to-text with speaker diarization — the best open STT pipeline. <code>github.com/m-bain/whisperX</code></div></li>
+    <li><span class="name">Faster-Whisper</span><div class="desc">CTranslate2-optimized Whisper, 4x faster transcription on CPU and GPU. <code>github.com/SYSTRAN/faster-whisper</code></div></li>
+    <li><span class="name">ComfyUI-TTS-Audio-Suite</span><div class="desc">Engine-agnostic node interface — v4.22.7 added Echo-TTS for premium English cloning plus Qwen3-TTS and CosyVoice3 for multilingual synthesis. <code>github.com/diodiogod/ComfyUI-TTS-Audio-Suite</code></div></li>
+  </ul>
+</section>
+
+<section id="productivity">
+  <h2>⚡ 6. Productivity &amp; Personal Tools</h2>
+  <ul class="repo-list">
+    <li><span class="name">OpenCut</span><div class="desc">Free, open-source web video editor — the open alternative to CapCut. <code>github.com/OpenCut-app/OpenCut</code></div></li>
+    <li><span class="name">AppFlowy</span><div class="desc">Open-source Notion alternative, fully self-hosted, Markdown + database + AI-ready. <code>github.com/AppFlowy-IO/AppFlowy</code></div></li>
+    <li><span class="name">Obsidian plugin ecosystem</span><div class="desc">The most powerful personal knowledge management ecosystem, extended by hundreds of plugins. <code>github.com/obsidianmd</code></div></li>
+    <li><span class="name">Actual Budget</span><div class="desc">Free, privacy-focused, self-hosted personal finance and budgeting app. <code>github.com/actualbudget/actual</code></div></li>
+    <li><span class="name">Cal.com</span><div class="desc">Open-source Calendly alternative, fully self-hosted. <code>github.com/calcom/cal.com</code></div></li>
+    <li><span class="name">Docmost</span><div class="desc">Open-source Notion + Confluence alternative for teams — wiki, docs, real-time collaboration. <code>github.com/docmost/docmost</code></div></li>
+    <li><span class="name">Plane</span><div class="desc">Open-source Jira/Linear alternative for project management. <code>github.com/makeplane/plane</code></div></li>
+    <li><span class="name">Hoppscotch</span><div class="desc">Open-source Postman alternative, self-hosted, test APIs in-browser. <code>github.com/hoppscotch/hoppscotch</code></div></li>
+    <li><span class="name">Excalidraw</span><div class="desc">Virtual whiteboard for sketching diagrams, system designs, and flowcharts. <code>github.com/excalidraw/excalidraw</code></div></li>
+    <li><span class="name">Memos</span><div class="desc">Lightweight, self-hosted Twitter-like note-taking app. <code>github.com/usememos/memos</code></div></li>
+    <li><span class="name">Stirling-PDF</span><div class="desc">Locally hosted PDF manipulation — convert, merge, split, OCR, all offline. <code>github.com/Stirling-Tools/Stirling-PDF</code></div></li>
+    <li><span class="name">Screenpipe</span><div class="desc">Open-source personal AI memory — records screen and audio 24/7, queryable with AI. <code>github.com/mediar-ai/screenpipe</code></div></li>
+  </ul>
+</section>
+
+<section id="rag">
+  <h2>🔍 7. RAG, Search &amp; Knowledge</h2>
+  <ul class="repo-list">
+    <li><span class="name">AnythingLLM</span><div class="desc">Drop in documents, websites, or databases and chat with them using any LLM, locally or via API. <code>github.com/Mintplex-Labs/anything-llm</code></div></li>
+    <li><span class="name">Perplexica</span><div class="desc">Open-source Perplexity clone — an AI search engine that actually searches the web and cites sources. <code>github.com/ItzCrazyKns/Perplexica</code></div></li>
+    <li><span class="name">Mem0</span><div class="desc">The go-to memory layer for production agents, pairing well with LangChain or CrewAI. <code>github.com/mem0ai/mem0</code></div></li>
+    <li><span class="name">Chroma</span><div class="desc">Open-source AI-native vector database — the default choice for local RAG projects. <code>github.com/chroma-core/chroma</code></div></li>
+    <li><span class="name">Qdrant</span><div class="desc">High-performance, fully self-hostable vector search engine for production RAG. <code>github.com/qdrant/qdrant</code></div></li>
+    <li><span class="name">Crawl4AI</span><div class="desc">Web crawler optimized for LLMs and RAG — scrapes and returns clean markdown. <code>github.com/unclecode/crawl4ai</code></div></li>
+    <li><span class="name">Firecrawl</span><div class="desc">Turns any website into clean LLM-ready data, used by thousands of AI apps. <code>github.com/mendableai/firecrawl</code></div></li>
+  </ul>
+</section>
+
+<section id="coding">
+  <h2>🛡️ 8. Coding Agents &amp; Dev Tools</h2>
+  <ul class="repo-list">
+    <li><span class="name">Gemini CLI</span><div class="desc">Google's agentic coding tool — chat with, instruct, and automate from the terminal via a simple npx command. <code>github.com/google-gemini/gemini-cli</code></div></li>
+    <li><span class="name">Aider</span><div class="desc">AI pair programmer in your terminal, works with GPT-4, Claude, and local models, edits your codebase directly. <code>github.com/paul-gauthier/aider</code></div></li>
+    <li><span class="name">Continue</span><div class="desc">Open-source Copilot alternative for VS Code and JetBrains — bring any model, local or cloud. <code>github.com/continuedev/continue</code></div></li>
+    <li><span class="name">awesome-cursorrules</span><div class="desc">Community-curated best-practice rules for the Cursor editor. <code>github.com/PatrickJS/awesome-cursorrules</code></div></li>
+    <li><span class="name">Tabby</span><div class="desc">Self-hosted AI coding assistant with an OpenAI-compatible API — zero data sent to the cloud. <code>github.com/TabbyML/tabby</code></div></li>
+    <li><span class="name">Codeium</span><div class="desc">Free AI code completion across 70+ languages with a generous free tier. <code>github.com/Exafunction/codeium</code></div></li>
+    <li><span class="name">Claude Code (Anthropic)</span><div class="desc">Excellent at debugging, explaining errors, and step-by-step reasoning — now open-source. <code>github.com/anthropics/claude-code</code></div></li>
+  </ul>
+</section>
+
+<section id="scraping">
+  <h2>🌐 9. Scraping, Web &amp; Data</h2>
+  <ul class="repo-list">
+    <li><span class="name">Playwright</span><div class="desc">Microsoft's browser automation library — the gold standard for scraping and E2E testing. <code>github.com/microsoft/playwright</code></div></li>
+    <li><span class="name">Puppeteer</span><div class="desc">Headless Chrome automation from Google for scraping and testing. <code>github.com/puppeteer/puppeteer</code></div></li>
+    <li><span class="name">Scrapy</span><div class="desc">The most powerful Python web scraping framework, built for large-scale crawling. <code>github.com/scrapy/scrapy</code></div></li>
+    <li><span class="name">Browserless</span><div class="desc">Self-hosted headless-Chrome-as-a-service — drop-in replacement for cloud Selenium/Puppeteer. <code>github.com/browserless/browserless</code></div></li>
+    <li><span class="name">ScrapeGraphAI</span><div class="desc">Uses LLMs to scrape websites from natural-language instructions. <code>github.com/ScrapeGraphAI/Scrapegraph-ai</code></div></li>
+    <li><span class="name">Jina Reader</span><div class="desc">Converts any URL to clean markdown for LLMs with a single API call. <code>github.com/jina-ai/reader</code></div></li>
+    <li><span class="name">Markitdown (Microsoft)</span><div class="desc">Converts PDFs, Office docs, and images to Markdown for AI pipelines. <code>github.com/microsoft/markitdown</code></div></li>
+  </ul>
+</section>
+
+<section id="selfhosted">
+  <h2>🏠 10. Self-Hosted Apps &amp; Media</h2>
+  <ul class="repo-list">
+    <li><span class="name">Jellyfin</span><div class="desc">Open-source Netflix alternative — self-host your entire media library. <code>github.com/jellyfin/jellyfin</code></div></li>
+    <li><span class="name">Immich</span><div class="desc">Self-hosted Google Photos alternative with AI face recognition and mobile backup. <code>github.com/immich-app/immich</code></div></li>
+    <li><span class="name">Home Assistant</span><div class="desc">The ultimate smart-home automation platform — 3,000+ integrations, fully local. <code>github.com/home-assistant/core</code></div></li>
+    <li><span class="name">Ntfy</span><div class="desc">Simple push notifications via HTTP — alerts from any script to your phone. <code>github.com/binwiederhier/ntfy</code></div></li>
+    <li><span class="name">Uptime Kuma</span><div class="desc">Beautiful self-hosted uptime monitoring with alerting. <code>github.com/louislam/uptime-kuma</code></div></li>
+    <li><span class="name">IT-Tools</span><div class="desc">60+ developer utilities (encode, decode, convert, generate) in one clean self-hosted app. <code>github.com/CorentinTh/it-tools</code></div></li>
+    <li><span class="name">Dashy</span><div class="desc">Open-source personal dashboard for all your self-hosted services. <code>github.com/Lissy93/dashy</code></div></li>
+  </ul>
+</section>
+
+<section id="gems">
+  <h2>🧠 11. Research, Music &amp; Hidden Gems</h2>
+  <ul class="repo-list">
+    <li><span class="name">AudioX</span><div class="desc">Unified framework integrating text, video, image, and audio conditions for multimodal audio synthesis. <code>github.com/ZeyueT/AudioX</code></div></li>
+    <li><span class="name">Demucs (Meta)</span><div class="desc">State-of-the-art music source separation — split any song into vocals, drums, bass, and instruments. <code>github.com/facebookresearch/demucs</code></div></li>
+    <li><span class="name">Whisper (OpenAI)</span><div class="desc">The original open speech recognition model, transcribing 99 languages with near-human accuracy. <code>github.com/openai/whisper</code></div></li>
+    <li><span class="name">LLaVA</span><div class="desc">Open large vision-language model — describe images, answer visual questions, analyze screenshots, fully local. <code>github.com/haotian-liu/LLaVA</code></div></li>
+    <li><span class="name">MusicGen (Meta)</span><div class="desc">Generate music from text prompts — open-source, self-hosted, no limits. <code>github.com/facebookresearch/audiocraft</code></div></li>
+    <li><span class="name">awesome-ai-agents-2026</span><div class="desc">177 production-ready SOUL.md configs across 24 categories (PM, SEO, DevOps, Writer, Support) for OpenClaw. <code>github.com/caramaschiHG/awesome-ai-agents-2026</code></div></li>
+  </ul>
+</section>
+
+<section id="map">
+  <h2>🗺️ Quick category map</h2>
+  <table>
+    <tr><th>Category</th><th>Section</th></tr>
+    <tr><td>🤖 AI Agents &amp; Automation</td><td>1</td></tr>
+    <tr><td>🖥️ Local LLMs &amp; Ollama</td><td>2</td></tr>
+    <tr><td>🎨 Image Generation</td><td>3</td></tr>
+    <tr><td>🎬 Video Generation</td><td>4</td></tr>
+    <tr><td>🗣️ TTS &amp; Voice</td><td>5</td></tr>
+    <tr><td>⚡ Productivity &amp; Personal</td><td>6</td></tr>
+    <tr><td>🔍 RAG, Search &amp; Knowledge</td><td>7</td></tr>
+    <tr><td>🛡️ Coding Agents &amp; Dev Tools</td><td>8</td></tr>
+    <tr><td>🌐 Scraping &amp; Web</td><td>9</td></tr>
+    <tr><td>🏠 Self-Hosted Apps</td><td>10</td></tr>
+    <tr><td>🧠 Research &amp; Hidden Gems</td><td>11</td></tr>
+  </table>
+
+  <div class="tip">💡 <strong>Pro tip:</strong> Local inference (Ollama + Open WebUI + DeepSeek) makes sense for cost-sensitive or privacy-critical work. Workflow builders (Dify, n8n) suit teams wiring AI into existing tools. Agent frameworks (Mastra, Browser Use) fit products where AI needs to take autonomous action.</div>
+</section>
+
+<div class="cta">
+  <h3>Bookmark this list</h3>
+  <p>100 repos, 11 categories — come back whenever you need to pick a tool instead of building one from scratch.</p>
+</div>
+
+</main>
+</body>
+</html>
