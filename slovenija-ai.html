@@ -93,9 +93,82 @@
 
   /* Responsive */
   @media (max-width: 600px) { .hero { padding: 2.5rem 1rem 2rem; } .stat-row { grid-template-columns: 1fr 1fr; } }
+
+  /* Full-bleed hero banner image */
+  .hero-banner { width: 100%; height: 280px; display: block; overflow: hidden; position: relative; }
+  .hero-banner svg { width: 100%; height: 100%; display: block; }
+  @media (max-width: 600px) { .hero-banner { height: 190px; } }
 </style>
 </head>
 <body>
+
+<!-- HERO BANNER IMAGE -->
+<div class="hero-banner">
+  <svg viewBox="0 0 1200 280" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Stilizirana ilustracija Slovenije z gorovjem Triglav in AI vezji">
+    <defs>
+      <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#0f172a"/>
+        <stop offset="55%" stop-color="#1e293b"/>
+        <stop offset="100%" stop-color="#312e81"/>
+      </linearGradient>
+      <linearGradient id="peakGlow" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#10b981"/>
+        <stop offset="100%" stop-color="#6366f1"/>
+      </linearGradient>
+      <radialGradient id="sun" cx="50%" cy="100%" r="75%">
+        <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.45"/>
+        <stop offset="100%" stop-color="#f59e0b" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+
+    <rect width="1200" height="280" fill="url(#sky)"/>
+    <rect width="1200" height="280" fill="url(#sun)"/>
+
+    <!-- circuit lines -->
+    <g stroke="#94a3b8" stroke-opacity="0.18" stroke-width="1.5" fill="none">
+      <path d="M0 60 H180 V20 H320"/>
+      <path d="M1200 90 H1020 V40 H880"/>
+      <path d="M0 230 H140 V260 H300"/>
+      <path d="M1200 220 H1040 V250 H900"/>
+      <path d="M380 20 V0"/>
+      <path d="M820 0 V20"/>
+    </g>
+    <g fill="#94a3b8" fill-opacity="0.35">
+      <circle cx="180" cy="60" r="4"/>
+      <circle cx="320" cy="20" r="4"/>
+      <circle cx="1020" cy="90" r="4"/>
+      <circle cx="880" cy="40" r="4"/>
+      <circle cx="140" cy="230" r="4"/>
+      <circle cx="300" cy="260" r="4"/>
+      <circle cx="1040" cy="220" r="4"/>
+      <circle cx="900" cy="250" r="4"/>
+    </g>
+
+    <!-- Triglav-style triple peak (Slovenian coat-of-arms silhouette) -->
+    <path d="M480 280 L620 110 L660 150 L700 100 L760 180 L840 280 Z" fill="url(#peakGlow)" fill-opacity="0.85"/>
+    <path d="M520 280 L620 150 L680 220 L720 180 L800 280 Z" fill="#0f172a" fill-opacity="0.55"/>
+    <!-- snow caps -->
+    <path d="M610 132 L620 110 L632 134 L620 140 Z" fill="#ffffff" fill-opacity="0.9"/>
+    <path d="M690 122 L700 100 L712 124 L700 132 Z" fill="#ffffff" fill-opacity="0.9"/>
+
+    <!-- stars -->
+    <g fill="#ffffff" fill-opacity="0.7">
+      <circle cx="120" cy="50" r="1.6"/>
+      <circle cx="260" cy="90" r="1.2"/>
+      <circle cx="950" cy="60" r="1.6"/>
+      <circle cx="1080" cy="120" r="1.2"/>
+      <circle cx="430" cy="40" r="1.2"/>
+      <circle cx="980" cy="150" r="1.4"/>
+    </g>
+
+    <!-- Slovenian tricolour accent stripe -->
+    <g>
+      <rect x="0" y="262" width="1200" height="6" fill="#ffffff" fill-opacity="0.9"/>
+      <rect x="0" y="268" width="1200" height="6" fill="#dc2626" fill-opacity="0.9"/>
+      <rect x="0" y="274" width="1200" height="6" fill="#1e3a8a" fill-opacity="0.9"/>
+    </g>
+  </svg>
+</div>
 
 <!-- HERO -->
 <header class="hero">
