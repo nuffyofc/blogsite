@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>12 Self-Hosted Productivity Tools Worth Replacing Your SaaS Subscriptions With (2025–2026)</title>
+<style>
+  :root {
+    --emerald: #10b981; --emerald-bg: #ecfdf5; --emerald-dark: #065f46;
+    --amber: #f59e0b; --amber-bg: #fffbeb; --amber-dark: #92400e;
+    --indigo: #6366f1; --indigo-bg: #eef2ff; --indigo-dark: #312e81;
+    --slate: #64748b; --slate-light: #f8fafc; --slate-dark: #0f172a;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; color: var(--slate-dark); line-height: 1.65; background: #fff; }
+  .container { max-width: 780px; margin: 0 auto; padding: 0 1.25rem; }
+
+  .hero { background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #312e81 100%); color: #fff; padding: 4rem 1.25rem 3rem; text-align: center; position: relative; overflow: hidden; }
+  .hero::after { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); opacity: .6; pointer-events: none; }
+  .hero h1 { font-size: clamp(1.6rem, 5vw, 2.4rem); font-weight: 800; margin: 0 0 .75rem; line-height: 1.15; position: relative; z-index: 1; }
+  .hero p { font-size: 1.05rem; color: #cbd5e1; max-width: 640px; margin: 0 auto 1.5rem; position: relative; z-index: 1; }
+  .hero .meta { font-size: .82rem; color: #94a3b8; position: relative; z-index: 1; }
+  .badge { display: inline-block; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; padding: .35rem .85rem; border-radius: 999px; margin-bottom: 1rem; }
+  .badge-green { background: var(--emerald); color: #fff; }
+  .badge-amber { background: var(--amber); color: #fff; }
+  .badge-indigo { background: var(--indigo); color: #fff; }
+
+  h2 { font-size: 1.45rem; font-weight: 800; margin: 2.5rem 0 1rem; color: var(--slate-dark); display: flex; align-items: center; gap: .6rem; }
+  h3 { font-size: 1.15rem; font-weight: 700; margin: 1.75rem 0 .6rem; color: var(--slate-dark); }
+  p, ul, ol { margin: 0 0 1rem; }
+  ul { padding-left: 1.25rem; }
+  li { margin-bottom: .5rem; }
+  a { color: #2563eb; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .card { background: #fff; border-radius: 14px; box-shadow: 0 1px 3px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.04); border-left: 5px solid var(--emerald); padding: 1.35rem; margin: 1.25rem 0; }
+  .card-header { display: flex; align-items: baseline; gap: .6rem; flex-wrap: wrap; margin-bottom: .5rem; }
+  .card-num { font-weight: 800; color: var(--emerald-dark); font-size: 1.05rem; }
+  .card-title { font-weight: 700; font-size: 1.08rem; color: var(--slate-dark); }
+  .card-tags { display: flex; gap: .5rem; flex-wrap: wrap; margin: .35rem 0 .6rem; }
+  .tag { font-size: .72rem; font-weight: 600; padding: .2rem .55rem; border-radius: 6px; background: var(--slate-light); color: var(--slate); border: 1px solid #e2e8f0; }
+  .tag-blue { background: var(--indigo-bg); color: var(--indigo-dark); border-color: #c7d2fe; }
+  .card p { color: #475569; font-size: .95rem; margin-bottom: .5rem; }
+  .card code { background: #f1f5f9; padding: .1rem .4rem; border-radius: 5px; font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace; font-size: .82rem; color: #334155; }
+  .replaces { background: #fff7ed; border: 1px solid #fed7aa; border-radius: 8px; padding: .5rem .8rem; font-size: .85rem; color: #9a3412; margin-bottom: .6rem; display: inline-block; }
+
+  .toc { background: var(--slate-light); border-radius: 12px; padding: 1.25rem; margin: 2rem 0; border: 1px solid #e2e8f0; }
+  .toc h4 { margin: 0 0 .75rem; font-size: .9rem; text-transform: uppercase; letter-spacing: .04em; color: #64748b; }
+  .toc ul { list-style: none; padding: 0; margin: 0; columns: 2; column-gap: 1.5rem; }
+  .toc li { margin: .35rem 0; font-size: .9rem; break-inside: avoid; }
+  .toc a { color: #334155; }
+  .toc a:hover { color: #2563eb; }
+
+  .section-lead { font-size: 1.05rem; color: #475569; margin-bottom: 1.25rem; }
+  .stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin: 1.25rem 0; }
+  .stat { background: var(--slate-light); border-radius: 12px; padding: 1rem; text-align: center; border: 1px solid #e2e8f0; }
+  .stat-num { display: block; font-size: 1.6rem; font-weight: 800; color: var(--emerald-dark); }
+  .stat-label { font-size: .78rem; color: #64748b; margin-top: .25rem; }
+
+  .cta { background: linear-gradient(135deg, #065f46 0%, #047857 100%); color: #fff; border-radius: 14px; padding: 2rem 1.5rem; text-align: center; margin: 2.5rem 0; }
+  .cta h3 { color: #fff; margin: 0 0 .5rem; font-size: 1.25rem; }
+  .cta p { color: #d1fae5; margin: 0; font-size: .95rem; }
+
+  @media (max-width: 600px) { .hero { padding: 2.5rem 1rem 2rem; } .stat-row { grid-template-columns: 1fr 1fr; } .toc ul { columns: 1; } }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <span class="badge badge-green">Self-Hosted Stack 2025/26</span>
+    <h1>12 Self-Hosted Tools Worth Replacing<br>Your SaaS Subscriptions With</h1>
+    <p>Notion, Calendly, Postman, Jira, Rewind — most of the apps you pay monthly for now have an open-source, self-hosted equivalent that's just as polished. Here's the shortlist.</p>
+    <div class="meta">20. June 2026 • Reading time: 9 min</div>
+  </div>
+</header>
+
+<main class="container">
+
+<nav class="toc">
+  <h4>Table of contents</h4>
+  <ul>
+    <li><a href="#why">1. Why self-host in 2026</a></li>
+    <li><a href="#tools">2. The 12 tools</a></li>
+    <li><a href="#rules">3. Rules for adopting them</a></li>
+  </ul>
+</nav>
+
+<section id="why">
+  <h2>💰 1. Why self-host in 2026</h2>
+  <p class="section-lead">SaaS pricing has crept up across the board while open-source alternatives quietly closed the UX gap. The math now favors hosting your own stack — especially once you're paying for three or four overlapping tools.</p>
+
+  <div class="stat-row">
+    <div class="stat"><span class="stat-num">12</span><span class="stat-label">Tools in this list</span></div>
+    <div class="stat"><span class="stat-num">€0</span><span class="stat-label">Licensing cost<br>(self-hosted)</span></div>
+    <div class="stat"><span class="stat-num">100%</span><span class="stat-label">Data stays<br>on your infra</span></div>
+  </div>
+
+  <p>None of these need a team to run. A single small VPS (a 2–4 GB box is plenty) running Docker Compose can host most of this list at once. The trade is setup time and your own backups in exchange for owning your data and dropping the recurring bill.</p>
+</section>
+
+<section id="tools">
+  <h2>🧰 2. The 12 tools</h2>
+
+  <div class="card">
+    <div class="card-header"><span class="card-num">#1</span><span class="card-title">OpenCut</span></div>
+    <div class="card-tags"><span class="tag">Video Editor</span><span class="tag tag-blue">Web-based</span></div>
+    <span class="replaces">Replaces: CapCut</span>
+    <p>Free, open-source video editor built for the browser — the open alternative to CapCut, and one of the fastest-growing tools of 2025.</p>
+    <p><code>github.com/OpenCut-app/OpenCut</code></p>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="card-num">#2</span><span class="card-title">AppFlowy</span></div>
+    <div class="card-tags"><span class="tag">Notes / Docs</span><span class="tag tag-blue">Self-hosted</span></div>
+    <span class="replaces">Replaces: Notion</span>
+    <p>Open-source Notion alternative — Markdown, databases, and AI-ready, with your data staying fully under your control.</p>
+    <p><code>github.com/AppFlowy-IO/AppFlowy</code></p>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="card-num">#3</span><span class="card-title">Obsidian + plugin ecosystem</span></div>
+    <div class="card-tags"><span class="tag">Knowledge Base</span><span class="tag tag-blue">Local-first</span></div>
+    <span class="replaces">Replaces: Evernote, Roam</span>
+    <p>The most powerful personal knowledge management ecosystem around, extended by hundreds of open-source community plugins (obsidian-tasks and friends).</p>
+    <p><code>github.com/obsidianmd</code></p>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="card-num">#4</span><span class="card-title">Actual Budget</span></div>
+    <div class="card-tags"><span class="tag">Finance</span><span class="tag tag-blue">Self-hosted</span></div>
+    <span class="replaces">Replaces: YNAB</span>
+    <p>Free, privacy-focused personal finance and budgeting app. Zero subscriptions, your bank data never leaves your own server.</p>
+    <p><code>github.com/actualbudget/actual</code></p>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="card-num">#5</span><span class="card-title">Cal.com</span></div>
+    <div class="card-tags"><span class="tag">Scheduling</span><span class="tag tag-blue">Self-hosted</span></div>
+    <span class="replaces">Replaces: Calendly</span>
+    <p>Open-source Calendly alternative — schedule meetings on your own terms, fully self-hosted with no per-seat pricing.</p>
+    <p><code>github.com/calcom/cal.com</code></p>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="card-num">#6</span><span class="card-title">Docmost</span></div>
+    <div class="card-tags"><span class="tag">Team Wiki</span><span class="tag tag-blue">Self-hosted</span></div>
+    <span class="replaces">Replaces: Notion + Confluence</span>
+    <p>Open-source Notion + Confluence alternative for teams — wiki, docs, and real-time collaboration in one app.</p>
+    <p><code>github.com/docmost/docmost</code></p>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="card-num">#7</span><span class="card-title">Plane</span></div>
+    <div class="card-tags"><span class="tag">Project Mgmt</span><span class="tag tag-blue">Self-hosted</span></div>
+    <span class="replaces">Replaces: Jira, Linear</span>
+    <p>Open-source Jira/Linear alternative for project management. Clean, fast, and free to self-host — no seat-based billing creep.</p>
+    <p><code>github.com/makeplane/plane</code></p>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="card-num">#8</span><span class="card-title">Hoppscotch</span></div>
+    <div class="card-tags"><span class="tag">API Testing</span><span class="tag tag-blue">Browser-based</span></div>
+    <span class="replaces">Replaces: Postman</span>
+    <p>Open-source Postman alternative — test APIs directly in the browser, self-hosted, no account required.</p>
+    <p><code>github.com/hoppscotch/hoppscotch</code></p>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="card-num">#9</span><span class="card-title">Excalidraw</span></div>
+    <div class="card-tags"><span class="tag">Whiteboard</span><span class="tag tag-blue">Free</span></div>
+    <span class="replaces">Replaces: Miro</span>
+    <p>Virtual whiteboard for sketching diagrams, system designs, and flowcharts — 100% free and delightfully fast.</p>
+    <p><code>github.com/excalidraw/excalidraw</code></p>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="card-num">#10</span><span class="card-title">Memos</span></div>
+    <div class="card-tags"><span class="tag">Quick Notes</span><span class="tag tag-blue">Self-hosted</span></div>
+    <span class="replaces">Replaces: Twitter drafts, sticky notes</span>
+    <p>Lightweight, self-hosted Twitter-like note-taking app for capturing ideas fast, without a feed full of other people's posts.</p>
+    <p><code>github.com/usememos/memos</code></p>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="card-num">#11</span><span class="card-title">Stirling-PDF</span></div>
+    <div class="card-tags"><span class="tag">PDF Tools</span><span class="tag tag-blue">Offline</span></div>
+    <span class="replaces">Replaces: Adobe Acrobat, online PDF tools</span>
+    <p>Locally hosted, web-based PDF manipulation tool — convert, merge, split, OCR, all offline with nothing uploaded to a third party.</p>
+    <p><code>github.com/Stirling-Tools/Stirling-PDF</code></p>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="card-num">#12</span><span class="card-title">Screenpipe</span></div>
+    <div class="card-tags"><span class="tag">Personal AI Memory</span><span class="tag tag-blue">Self-hosted</span></div>
+    <span class="replaces">Replaces: Rewind.ai</span>
+    <p>Open-source personal AI memory — records your screen and audio 24/7 and lets you query it with AI. Like Rewind, but free and yours.</p>
+    <p><code>github.com/mediar-ai/screenpipe</code></p>
+  </div>
+</section>
+
+<section id="rules">
+  <h2>🎯 3. Rules for adopting them</h2>
+  <ul>
+    <li><strong>Migrate one tool at a time.</strong> Swapping your whole stack in a weekend guarantees you'll lose data or give up halfway.</li>
+    <li><strong>Back up before you trust it.</strong> Self-hosted means self-responsible — set up automated backups (even a daily cron + rsync) before you rely on it daily.</li>
+    <li><strong>Start with the highest-friction subscription.</strong> If you're paying for Notion, Calendly, and Postman, cancel the one that annoys you most first — that's where the motivation to stick with the swap comes from.</li>
+    <li><strong>Docker Compose is your friend.</strong> Most of these ship a ready-made <code>docker-compose.yml</code> — a few minutes to first login is normal.</li>
+  </ul>
+</section>
+
+<div class="cta">
+  <h3>Own your stack</h3>
+  <p>12 tools, zero subscriptions, your data on your own server. Pick one this week.</p>
+</div>
+
+</main>
+</body>
+</html>
