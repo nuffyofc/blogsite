@@ -184,6 +184,13 @@
             transition: transform 0.3s ease;
         }
 
+        .hero-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
         .hero-visual:hover {
             transform: scale(1.015);
         }
@@ -380,7 +387,8 @@
 
         <main class="hero">
             <a class="hero-visual" href="slovenija-ai.html" aria-label="Preberi: Slovenija je AI Blue Ocean">
-                </a>
+                <img src="slovenia.jpg" alt="Slovenija" loading="lazy">
+            </a>
             <div class="hero-content">
                 <span class="tag research">Strategija</span><span class="tag lang">🇸🇮 SLO</span>
                 <h1><a href="slovenija-ai.html" style="color:inherit;text-decoration:none;">Slovenija je AI Blue Ocean: 30 priložnosti, konkretni stack in koliko denarja rešiš podjetnikom</a></h1>
